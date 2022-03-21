@@ -1,0 +1,154 @@
+QuestaSim vlog 10.1b Compiler 2012.04 Apr 26 2012
+vlog -f 1.f -l 1.log 
+-- Compiling module abstract_fx_add
+-- Compiling module ADD_1b
+-- Compiling module adder_4bit
+-- Compiling module AHB_LED
+-- Compiling module CoreUARTapb
+** Error: apb_uart.v(117): The expression for a parameter actual associated with the parameter name ('TX_FIFO') for the module instance ('uUART') must be constant.
+** Error: apb_uart.v(118): The expression for a parameter actual associated with the parameter name ('RX_FIFO') for the module instance ('uUART') must be constant.
+-- Compiling module fifo_async_8X256
+-- Compiling module bidir_data
+** Warning: bidir_data_word.v(1): (vlog-2275) 'bidir_data' already exists and will be overwritten.
+-- Compiling module bidir_data
+-- Compiling module bus_wr_rd_test
+-- Compiling module CM1_JTAG
+-- Compiling module clock_div_async
+-- Compiling module compare_result
+** Warning: cortex_m1_jtag.v(1): (vlog-2275) 'CM1_JTAG' already exists and will be overwritten.
+-- Compiling module CM1_JTAG
+-- Compiling module count
+-- Compiling module count_k
+-- Compiling module count_tb
+** Warning: cpu_rw_task.v(2): (vlog-2275) 'bus_wr_rd_test' already exists and will be overwritten.
+-- Compiling module bus_wr_rd_test
+-- Compiling module data_round
+-- Compiling module decoder_4_16
+-- Compiling module decompose2
+** Error: decompose2.v(17): Cannot find `include file "DW02_cos_function.inc" in directories:
+    d:/questasim_10.1b/ovm-2.1.2/../verilog_src/ovm-2.1.2/src, d:/questasim_10.1b/uvm-1.1a/../verilog_src/uvm-1.1a/src
+** Error: decompose2.v(18): Cannot find `include file "DW02_sin_function.inc" in directories:
+    d:/questasim_10.1b/ovm-2.1.2/../verilog_src/ovm-2.1.2/src, d:/questasim_10.1b/uvm-1.1a/../verilog_src/uvm-1.1a/src
+-- Compiling module decompose2_pipeline
+-- Compiling module decompose3
+** Error: decompose3.v(13): Cannot find `include file "DW_sqrt_function.inc" in directories:
+    d:/questasim_10.1b/ovm-2.1.2/../verilog_src/ovm-2.1.2/src, d:/questasim_10.1b/uvm-1.1a/../verilog_src/uvm-1.1a/src
+** Error: decompose3.v(14): Cannot find `include file "DW02_sin_function.inc" in directories:
+    d:/questasim_10.1b/ovm-2.1.2/../verilog_src/ovm-2.1.2/src, d:/questasim_10.1b/uvm-1.1a/../verilog_src/uvm-1.1a/src
+-- Compiling module decompose3_pipeline
+** Error: decompose3_pipeline.v(13): Cannot find `include file "DW_sqrt_function.inc" in directories:
+    d:/questasim_10.1b/ovm-2.1.2/../verilog_src/ovm-2.1.2/src, d:/questasim_10.1b/uvm-1.1a/../verilog_src/uvm-1.1a/src
+** Error: decompose3_pipeline.v(14): Cannot find `include file "DW02_sin_function.inc" in directories:
+    d:/questasim_10.1b/ovm-2.1.2/../verilog_src/ovm-2.1.2/src, d:/questasim_10.1b/uvm-1.1a/../verilog_src/uvm-1.1a/src
+** Error: demo.v(17): near "always": syntax error, unexpected always, expecting class
+** Error: DFF_N.v(1): near "ï": syntax error, unexpected non-printable character 0xef
+** Error: DFF_N.v(1): near "»": syntax error, unexpected non-printable character 0xbb
+** Error: DFF_N.v(1): near "¿": syntax error, unexpected non-printable character 0xbf
+-- Compiling module DFF_N
+-- Compiling module clk_div8
+-- Compiling module dpram
+-- Compiling module dump_task
+** Error: DWF_absval.v(1): (vlog-2730) Undefined variable: 'width'.
+** Error: DWF_absval.v(2): (vlog-2730) Undefined variable: 'width'.
+-- Compiling module DW_div
+-- Compiling module adderN
+-- Compiling module alu
+-- Compiling module mux
+-- Compiling module DFF
+-- Compiling module DFF1
+** Warning: ex3_dff_synch.v(1): (vlog-2275) 'DFF1' already exists and will be overwritten.
+-- Compiling module DFF1
+-- Compiling module code_83
+-- Compiling module MAC
+-- Compiling module ex4_mac_direct
+-- Compiling module FSM
+** Warning: ex5_fsm1.v(1): (vlog-2275) 'FSM' already exists and will be overwritten.
+-- Compiling module FSM
+-- Compiling module fifo_sync_dpram2001
+** Error: fork_join_word.v(1): near "par_block": syntax error, unexpected IDENTIFIER, expecting class
+** Warning: fork_test.v(1): (vlog-2263) Redefinition of macro: TIMESLICE.
+-- Compiling module fork_join_test
+** Warning: for_join_test_word.v(2): (vlog-2275) 'fork_join_test' already exists and will be overwritten.
+-- Compiling module fork_join_test
+-- Compiling module FSM_style1
+-- Compiling module FSM_style3
+** Warning: FSM_style31.v(1): (vlog-2275) 'FSM_style3' already exists and will be overwritten.
+-- Compiling module FSM_style3
+** Error: fsm_tb.v(1): near "always": syntax error, unexpected always, expecting class
+-- Compiling module tap_FSM
+** Error: jtag_fsm.v(23): 'flag' already declared in this scope (tap_FSM).
+** Error: jtag_fsm.v(25): 'updateIR' already declared in this scope (tap_FSM).
+** Error: jtag_fsm.v(103): 'clockDR' already declared in this scope (tap_FSM).
+** Error: jtag_fsm.v(103): 'updateDR' already declared in this scope (tap_FSM).
+** Error: jtag_fsm.v(103): 'clockIR' already declared in this scope (tap_FSM).
+** Error: jtag_fsm.v(103): 'tdo_en' already declared in this scope (tap_FSM).
+** Error: jtag_fsm.v(103): 'shiftDR' already declared in this scope (tap_FSM).
+** Error: jtag_fsm.v(103): 'shiftIR' already declared in this scope (tap_FSM).
+** Error: jtag_fsm1.v(1): near "01": syntax error, unexpected INTEGER NUMBER, expecting class
+-- Compiling module led
+** Warning: led_word.v(1): (vlog-2275) 'led' already exists and will be overwritten.
+-- Compiling module led
+-- Compiling module line_rx
+-- Compiling module line_rx_tb
+-- Compiling module line_tx
+-- Compiling module line_tx_tb
+-- Compiling module spi
+-- Compiling module mini_SPI_Slave
+-- Compiling module mini_uart
+-- Compiling module mini_uart_opt
+-- Compiling module MUX2_1
+-- Compiling module orand
+-- Compiling module read_enable_signal
+** Error: read_enable_signal_word.v(1): near "1": syntax error, unexpected INTEGER NUMBER, expecting class
+-- Compiling module rx_round
+-- Compiling module rx_squ
+-- Compiling module Shifter
+-- Compiling module shift_reg
+** Error: shift_reg_word.v(1): near "01": syntax error, unexpected INTEGER NUMBER, expecting class
+-- Compiling module simple_vic
+** Warning: simple_vic_word.v(1): (vlog-2275) 'simple_vic' already exists and will be overwritten.
+-- Compiling module simple_vic
+-- Compiling module socAhbApbBridge
+** Error: socAhbApbBridge.v(55): 'HREADYOUT' already declared in this scope (socAhbApbBridge).
+** Error: socAhbApbBridge.v(57): 'PADDR' already declared in this scope (socAhbApbBridge).
+** Error: socAhbApbBridge.v(58): 'PWDATA' already declared in this scope (socAhbApbBridge).
+** Error: socAhbApbBridge.v(59): 'PSEL' already declared in this scope (socAhbApbBridge).
+** Error: socAhbApbBridge.v(60): 'PWRITE' already declared in this scope (socAhbApbBridge).
+** Error: socAhbApbBridge.v(61): 'PENABLE' already declared in this scope (socAhbApbBridge).
+** Error: spi_fsm_word.v(1): near "always": syntax error, unexpected always, expecting class
+-- Compiling module SPI_Master
+** Warning: spi_master_ref.v(2): (vlog-2275) 'SPI_Master' already exists and will be overwritten.
+-- Compiling module SPI_Master
+-- Compiling module spi_masters
+-- Compiling module SPI_master_test
+-- Compiling module spram
+** Warning: spram_fpga.v(1): (vlog-2275) 'spram' already exists and will be overwritten.
+-- Compiling module spram
+** Warning: tap_FSM.v(2): (vlog-2275) 'tap_FSM' already exists and will be overwritten.
+-- Compiling module tap_FSM
+** Error: task_word.v(1): near "µ": syntax error, unexpected non-printable character 0xb5
+** Error: task_word.v(1): near "Ä": syntax error, unexpected non-printable character 0xc4
+** Error: task_word.v(1): near "¶": syntax error, unexpected non-printable character 0xb6
+** Error: task_word.v(1): near "¨": syntax error, unexpected non-printable character 0xa8
+** Error: task_word.v(1): near "Ò": syntax error, unexpected non-printable character 0xd2
+** Error: task_word.v(1): near "å": syntax error, unexpected non-printable character 0xe5
+** Error: task_word.v(1): near "£": syntax error, unexpected non-printable character 0xa3
+** Error: task_word.v(1): near "º": syntax error, unexpected non-printable character 0xba
+** Error: task_word.v(2): near "task": syntax error, unexpected task
+** Warning: tb_system_init.v(17): (vlog-2263) Redefinition of macro: TIMESLICE.
+-- Compiling module system_init
+** Error: task_word.v(2): near "<": syntax error, unexpected '<', expecting class
+** Error: tb_system_init_word.v(1): near "1": syntax error, unexpected INTEGER NUMBER, expecting class
+** Error: testbench_word.v(1): near "ï": syntax error, unexpected non-printable character 0xef
+** Error: testbench_word.v(1): near "»": syntax error, unexpected non-printable character 0xbb
+** Error: testbench_word.v(1): near "¿": syntax error, unexpected non-printable character 0xbf
+** Error: testbench_word.v(1): near "01": syntax error, unexpected INTEGER NUMBER, expecting class
+-- Compiling module TimesN
+-- Compiling module uart_rx
+-- Compiling module uart_tx
+-- Compiling module updown_count
+** Error: verilog_function.v(1): near "Verilog": syntax error, unexpected IDENTIFIER, expecting class
+-- Compiling module vjtag
+-- Compiling module write_enable_signal
+** Warning: write_enable_signal_word.v(3): (vlog-2275) 'write_enable_signal' already exists and will be overwritten.
+-- Compiling module write_enable_signal

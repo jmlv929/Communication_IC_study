@@ -1,0 +1,1987 @@
+Model {
+  Name			  "fm_ddc"
+  Version		  7.7
+  MdlSubVersion		  0
+  GraphicalInterface {
+    NumRootInports	    0
+    NumRootOutports	    0
+    ParameterArgumentNames  ""
+    ComputedModelVersion    "1.1267"
+    NumModelReferences	    0
+    NumTestPointedSignals   0
+  }
+  SavedCharacterEncoding  "windows-1252"
+  PreLoadFcn		  "SR=80e6 ;%Sample rate variable\nIF=103.9e6\n% Create filters normalized to sample rate\ncfir_passband"
+  "_edge = 105e3/(SR/128)*2;\n%mfir_pass_edge = 80e3/(SR/128)*2;\n%mfir_stopb_strt = 100e3/(SR/128)*2;\nmfir_pass_edge "
+  " = 100e3/(SR/128)*2;\nmfir_stopb_strt = 130e3/(SR/128)*2;\n\n%Create input stimulus and plot so we can see\n%All are"
+  " centered around a 7mhz carrier\n%Two sin in middle and edge of passband\nddc_in = .8*sin(2*pi*(40e3+IF)/SR*(1:20e4)"
+  ") + .6*sin(2*pi*(80e3+IF)/SR*(1:20e4));\n%sin in adjacent channel\nddc_in = ddc_in + .9*sin(2*pi*(100e3+IF)/SR*(1:20"
+  "e4)) + 1.2*sin(2*pi*(120e3+IF)/SR*(1:20e4))+ 3.9*sin(2*pi*(130e3+IF)/SR*(1:20e4));\n%sin in distant channels\nddc_in"
+  " = ddc_in + 1.1*sin(2*pi*(487e3+IF)/SR*(1:20e4)) + 2.1*sin(2*pi*(22e6+IF)/SR*(1:20e4)) ;\nrandn('state',171);\nddc_i"
+  "n = awgn(ddc_in,10,0);     %add some noise\nfft_size=2^16;\nfddc_in = fft(ddc_in(1:fft_size-1));  %need high resolut"
+  "ion fft to resolve peaks\n%sp_view_L=ceil(2*IF/SR*fft_size);\n%sp_view_H=ceil(2*(IF+1e6)/SR*fft_size);\n%plot(20*log"
+  "(abs(fddc_in(sp_view_L:sp_view_H)/max(abs(fddc_in)))))%plot just the section we want to see\n%grid;\n\n\n"
+  SaveDefaultBlockParams  on
+  ScopeRefreshTime	  0.035000
+  OverrideScopeRefreshTime on
+  DisableAllScopes	  off
+  DataTypeOverride	  "UseLocalSettings"
+  DataTypeOverrideAppliesTo "AllNumericTypes"
+  MinMaxOverflowLogging	  "OverflowOnly"
+  MinMaxOverflowArchiveMode "Overwrite"
+  MaxMDLFileLineLength	  120
+  UserBdParams		  "synDspstartup"
+  synDspstartup		  "OK"
+  Created		  "Thu Sep 15 10:09:56 2005"
+  Creator		  "dirk"
+  UpdateHistory		  "UpdateHistoryNever"
+  ModifiedByFormat	  "%<Auto>"
+  LastModifiedBy	  "Administrator"
+  ModifiedDateFormat	  "%<Auto>"
+  LastModifiedDate	  "Sat Jan 03 12:38:59 2015"
+  RTWModifiedTimeStamp	  342189248
+  ModelVersionFormat	  "1.%<AutoIncrement:1267>"
+  ConfigurationManager	  "None"
+  SampleTimeColors	  on
+  SampleTimeAnnotations	  off
+  LibraryLinkDisplay	  "none"
+  WideLines		  off
+  ShowLineDimensions	  off
+  ShowPortDataTypes	  on
+  ShowLoopsOnError	  on
+  IgnoreBidirectionalLines off
+  ShowStorageClass	  off
+  ShowTestPointIcons	  on
+  ShowSignalResolutionIcons on
+  ShowViewerIcons	  on
+  SortedOrder		  off
+  ExecutionContextIcon	  off
+  ShowLinearizationAnnotations on
+  BlockNameDataTip	  off
+  BlockParametersDataTip  off
+  BlockDescriptionStringDataTip	off
+  ToolBar		  on
+  StatusBar		  on
+  BrowserShowLibraryLinks off
+  BrowserLookUnderMasks	  off
+  SimulationMode	  "normal"
+  LinearizationMsg	  "none"
+  Profile		  off
+  ParamWorkspaceSource	  "MATLABWorkspace"
+  AccelSystemTargetFile	  "accel.tlc"
+  AccelTemplateMakefile	  "accel_default_tmf"
+  AccelMakeCommand	  "make_rtw"
+  TryForcingSFcnDF	  off
+  RecordCoverage	  off
+  CovPath		  "/"
+  CovSaveName		  "covdata"
+  CovMetricSettings	  "dw"
+  CovNameIncrementing	  off
+  CovHtmlReporting	  on
+  CovForceBlockReductionOff on
+  covSaveCumulativeToWorkspaceVar on
+  CovSaveSingleToWorkspaceVar on
+  CovCumulativeVarName	  "covCumulativeData"
+  CovCumulativeReport	  off
+  CovReportOnPause	  on
+  CovModelRefEnable	  "Off"
+  CovExternalEMLEnable	  off
+  ExtModeBatchMode	  off
+  ExtModeEnableFloating	  on
+  ExtModeTrigType	  "manual"
+  ExtModeTrigMode	  "normal"
+  ExtModeTrigPort	  "1"
+  ExtModeTrigElement	  "any"
+  ExtModeTrigDuration	  1000
+  ExtModeTrigDurationFloating "auto"
+  ExtModeTrigHoldOff	  0
+  ExtModeTrigDelay	  0
+  ExtModeTrigDirection	  "rising"
+  ExtModeTrigLevel	  0
+  ExtModeArchiveMode	  "off"
+  ExtModeAutoIncOneShot	  off
+  ExtModeIncDirWhenArm	  off
+  ExtModeAddSuffixToVar	  off
+  ExtModeWriteAllDataToWs off
+  ExtModeArmWhenConnect	  on
+  ExtModeSkipDownloadWhenConnect off
+  ExtModeLogAll		  on
+  ExtModeAutoUpdateStatusClock on
+  BufferReuse		  on
+  ShowModelReferenceBlockVersion off
+  ShowModelReferenceBlockIO off
+  Array {
+    Type		    "Handle"
+    Dimension		    1
+    Simulink.ConfigSet {
+      $ObjectID		      1
+      Version		      "1.11.0"
+      Array {
+	Type			"Handle"
+	Dimension		8
+	Simulink.SolverCC {
+	  $ObjectID		  2
+	  Version		  "1.11.0"
+	  StartTime		  "0.0"
+	  StopTime		  "2e5/SR"
+	  AbsTol		  "auto"
+	  FixedStep		  "auto"
+	  InitialStep		  "auto"
+	  MaxNumMinSteps	  "-1"
+	  MaxOrder		  5
+	  ZcThreshold		  "auto"
+	  ConsecutiveZCsStepRelTol "10*128*eps"
+	  MaxConsecutiveZCs	  "1000"
+	  ExtrapolationOrder	  4
+	  NumberNewtonIterations  1
+	  MaxStep		  "auto"
+	  MinStep		  "auto"
+	  MaxConsecutiveMinStep	  "1"
+	  RelTol		  "1e-3"
+	  SolverMode		  "SingleTasking"
+	  ConcurrentTasks	  off
+	  Solver		  "FixedStepDiscrete"
+	  SolverName		  "FixedStepDiscrete"
+	  SolverJacobianMethodControl "auto"
+	  ShapePreserveControl	  "DisableAll"
+	  ZeroCrossControl	  "UseLocalSettings"
+	  ZeroCrossAlgorithm	  "Nonadaptive"
+	  AlgebraicLoopSolver	  "TrustRegion"
+	  SolverResetMethod	  "Fast"
+	  PositivePriorityOrder	  off
+	  AutoInsertRateTranBlk	  off
+	  SampleTimeConstraint	  "Unconstrained"
+	  InsertRTBMode		  "Whenever possible"
+	}
+	Simulink.DataIOCC {
+	  $ObjectID		  3
+	  Version		  "1.11.0"
+	  Decimation		  "1"
+	  ExternalInput		  "[t, u]"
+	  FinalStateName	  "xFinal"
+	  InitialState		  "xInitial"
+	  LimitDataPoints	  on
+	  MaxDataPoints		  "1000"
+	  LoadExternalInput	  off
+	  LoadInitialState	  off
+	  SaveFinalState	  off
+	  SaveCompleteFinalSimState off
+	  SaveFormat		  "Array"
+	  SignalLoggingSaveFormat "ModelDataLogs"
+	  SaveOutput		  off
+	  SaveState		  off
+	  SignalLogging		  off
+	  DSMLogging		  on
+	  InspectSignalLogs	  off
+	  SaveTime		  off
+	  ReturnWorkspaceOutputs  off
+	  StateSaveName		  "xout"
+	  TimeSaveName		  "tout"
+	  OutputSaveName	  "yout"
+	  SignalLoggingName	  "logsout"
+	  DSMLoggingName	  "dsmout"
+	  OutputOption		  "RefineOutputTimes"
+	  OutputTimes		  "[]"
+	  ReturnWorkspaceOutputsName "out"
+	  Refine		  "1"
+	}
+	Simulink.OptimizationCC {
+	  $ObjectID		  4
+	  Version		  "1.11.0"
+	  Array {
+	    Type		    "Cell"
+	    Dimension		    4
+	    Cell		    "ZeroExternalMemoryAtStartup"
+	    Cell		    "ZeroInternalMemoryAtStartup"
+	    Cell		    "NoFixptDivByZeroProtection"
+	    Cell		    "OptimizeModelRefInitCode"
+	    PropName		    "DisabledProps"
+	  }
+	  BlockReduction	  on
+	  BooleanDataType	  on
+	  ConditionallyExecuteInputs on
+	  InlineParams		  on
+	  UseIntDivNetSlope	  off
+	  UseSpecifiedMinMax	  off
+	  InlineInvariantSignals  off
+	  OptimizeBlockIOStorage  on
+	  BufferReuse		  on
+	  EnhancedBackFolding	  off
+	  StrengthReduction	  off
+	  ExpressionFolding	  on
+	  BooleansAsBitfields	  off
+	  BitfieldContainerType	  "uint_T"
+	  EnableMemcpy		  on
+	  MemcpyThreshold	  64
+	  PassReuseOutputArgsAs	  "Structure reference"
+	  ExpressionDepthLimit	  2147483647
+	  FoldNonRolledExpr	  on
+	  LocalBlockOutputs	  on
+	  RollThreshold		  5
+	  SystemCodeInlineAuto	  off
+	  StateBitsets		  off
+	  DataBitsets		  off
+	  UseTempVars		  off
+	  ZeroExternalMemoryAtStartup on
+	  ZeroInternalMemoryAtStartup on
+	  InitFltsAndDblsToZero	  on
+	  NoFixptDivByZeroProtection off
+	  EfficientFloat2IntCast  off
+	  EfficientMapNaN2IntZero on
+	  OptimizeModelRefInitCode off
+	  LifeSpan		  "inf"
+	  MaxStackSize		  "Inherit from target"
+	  BufferReusableBoundary  on
+	  SimCompilerOptimization "Off"
+	  AccelVerboseBuild	  off
+	  AccelParallelForEachSubsystem	on
+	}
+	Simulink.DebuggingCC {
+	  $ObjectID		  5
+	  Version		  "1.11.0"
+	  RTPrefix		  "error"
+	  ConsistencyChecking	  "none"
+	  ArrayBoundsChecking	  "none"
+	  SignalInfNanChecking	  "none"
+	  SignalRangeChecking	  "none"
+	  ReadBeforeWriteMsg	  "UseLocalSettings"
+	  WriteAfterWriteMsg	  "UseLocalSettings"
+	  WriteAfterReadMsg	  "UseLocalSettings"
+	  AlgebraicLoopMsg	  "error"
+	  ArtificialAlgebraicLoopMsg "warning"
+	  SaveWithDisabledLinksMsg "warning"
+	  SaveWithParameterizedLinksMsg	"none"
+	  CheckSSInitialOutputMsg on
+	  UnderspecifiedInitializationDetection	"Classic"
+	  MergeDetectMultiDrivingBlocksExec "none"
+	  CheckExecutionContextPreStartOutputMsg off
+	  CheckExecutionContextRuntimeOutputMsg	off
+	  SignalResolutionControl "TryResolveAllWithWarning"
+	  BlockPriorityViolationMsg "warning"
+	  MinStepSizeMsg	  "warning"
+	  TimeAdjustmentMsg	  "none"
+	  MaxConsecutiveZCsMsg	  "error"
+	  MaskedZcDiagnostic	  "warning"
+	  IgnoredZcDiagnostic	  "warning"
+	  SolverPrmCheckMsg	  "warning"
+	  InheritedTsInSrcMsg	  "none"
+	  DiscreteInheritContinuousMsg "warning"
+	  MultiTaskDSMMsg	  "warning"
+	  MultiTaskCondExecSysMsg "none"
+	  MultiTaskRateTransMsg	  "error"
+	  SingleTaskRateTransMsg  "none"
+	  TasksWithSamePriorityMsg "warning"
+	  SigSpecEnsureSampleTimeMsg "warning"
+	  CheckMatrixSingularityMsg "none"
+	  IntegerOverflowMsg	  "warning"
+	  Int32ToFloatConvMsg	  "warning"
+	  ParameterDowncastMsg	  "error"
+	  ParameterOverflowMsg	  "error"
+	  ParameterUnderflowMsg	  "none"
+	  ParameterPrecisionLossMsg "warning"
+	  ParameterTunabilityLossMsg "warning"
+	  FixptConstUnderflowMsg  "none"
+	  FixptConstOverflowMsg	  "none"
+	  FixptConstPrecisionLossMsg "none"
+	  UnderSpecifiedDataTypeMsg "none"
+	  UnnecessaryDatatypeConvMsg "none"
+	  VectorMatrixConversionMsg "none"
+	  InvalidFcnCallConnMsg	  "error"
+	  FcnCallInpInsideContextMsg "Use local settings"
+	  SignalLabelMismatchMsg  "none"
+	  UnconnectedInputMsg	  "warning"
+	  UnconnectedOutputMsg	  "warning"
+	  UnconnectedLineMsg	  "warning"
+	  SFcnCompatibilityMsg	  "none"
+	  UniqueDataStoreMsg	  "none"
+	  BusObjectLabelMismatch  "warning"
+	  RootOutportRequireBusObject "warning"
+	  AssertControl		  "UseLocalSettings"
+	  EnableOverflowDetection off
+	  ModelReferenceIOMsg	  "none"
+	  ModelReferenceMultiInstanceNormalModeStructChecksumCheck "error"
+	  ModelReferenceVersionMismatchMessage "none"
+	  ModelReferenceIOMismatchMessage "none"
+	  ModelReferenceCSMismatchMessage "none"
+	  UnknownTsInhSupMsg	  "warning"
+	  ModelReferenceDataLoggingMessage "warning"
+	  ModelReferenceSymbolNameMessage "warning"
+	  ModelReferenceExtraNoncontSigs "error"
+	  StateNameClashWarn	  "warning"
+	  SimStateInterfaceChecksumMismatchMsg "warning"
+	  SimStateOlderReleaseMsg "error"
+	  InitInArrayFormatMsg	  "warning"
+	  StrictBusMsg		  "Warning"
+	  BusNameAdapt		  "WarnAndRepair"
+	  NonBusSignalsTreatedAsBus "none"
+	  LoggingUnavailableSignals "error"
+	  BlockIODiagnostic	  "none"
+	  SFUnusedDataAndEventsDiag "warning"
+	  SFUnexpectedBacktrackingDiag "warning"
+	  SFInvalidInputDataAccessInChartInitDiag "warning"
+	  SFNoUnconditionalDefaultTransitionDiag "warning"
+	  SFTransitionOutsideNaturalParentDiag "warning"
+	}
+	Simulink.HardwareCC {
+	  $ObjectID		  6
+	  Version		  "1.11.0"
+	  ProdBitPerChar	  8
+	  ProdBitPerShort	  16
+	  ProdBitPerInt		  32
+	  ProdBitPerLong	  32
+	  ProdBitPerFloat	  32
+	  ProdBitPerDouble	  64
+	  ProdBitPerPointer	  32
+	  ProdLargestAtomicInteger "Char"
+	  ProdLargestAtomicFloat  "None"
+	  ProdIntDivRoundTo	  "Undefined"
+	  ProdEndianess		  "Unspecified"
+	  ProdWordSize		  32
+	  ProdShiftRightIntArith  on
+	  ProdHWDeviceType	  "32-bit Generic"
+	  TargetBitPerChar	  8
+	  TargetBitPerShort	  16
+	  TargetBitPerInt	  32
+	  TargetBitPerLong	  32
+	  TargetBitPerFloat	  32
+	  TargetBitPerDouble	  64
+	  TargetBitPerPointer	  32
+	  TargetLargestAtomicInteger "Char"
+	  TargetLargestAtomicFloat "None"
+	  TargetShiftRightIntArith on
+	  TargetIntDivRoundTo	  "Undefined"
+	  TargetEndianess	  "Unspecified"
+	  TargetWordSize	  32
+	  TargetTypeEmulationWarnSuppressLevel 0
+	  TargetPreprocMaxBitsSint 32
+	  TargetPreprocMaxBitsUint 32
+	  TargetHWDeviceType	  "Specified"
+	  TargetUnknown		  off
+	  ProdEqTarget		  on
+	}
+	Simulink.ModelReferenceCC {
+	  $ObjectID		  7
+	  Version		  "1.11.0"
+	  UpdateModelReferenceTargets "IfOutOfDateOrStructuralChange"
+	  CheckModelReferenceTargetMessage "error"
+	  EnableParallelModelReferenceBuilds off
+	  ParallelModelReferenceErrorOnInvalidPool on
+	  ParallelModelReferenceMATLABWorkerInit "None"
+	  ModelReferenceNumInstancesAllowed "Multi"
+	  PropagateVarSize	  "Infer from blocks in model"
+	  ModelReferencePassRootInputsByReference on
+	  ModelReferenceMinAlgLoopOccurrences off
+	  PropagateSignalLabelsOutOfModel off
+	  SupportModelReferenceSimTargetCustomCode off
+	}
+	Simulink.SFSimCC {
+	  $ObjectID		  8
+	  Version		  "1.11.0"
+	  SFSimEnableDebug	  on
+	  SFSimOverflowDetection  on
+	  SFSimEcho		  on
+	  SimBlas		  on
+	  SimCtrlC		  on
+	  SimExtrinsic		  on
+	  SimIntegrity		  on
+	  SimUseLocalCustomCode	  off
+	  SimParseCustomCode	  on
+	  SimBuildMode		  "sf_incremental_build"
+	}
+	Simulink.RTWCC {
+	  $BackupClass		  "Simulink.RTWCC"
+	  $ObjectID		  9
+	  Version		  "1.11.0"
+	  Array {
+	    Type		    "Cell"
+	    Dimension		    1
+	    Cell		    "IncludeHyperlinkInReport"
+	    PropName		    "DisabledProps"
+	  }
+	  SystemTargetFile	  "grt.tlc"
+	  GenCodeOnly		  off
+	  MakeCommand		  "make_rtw"
+	  GenerateMakefile	  on
+	  TemplateMakefile	  "grt_default_tmf"
+	  GenerateReport	  off
+	  SaveLog		  off
+	  RTWVerbose		  on
+	  RetainRTWFile		  off
+	  ProfileTLC		  off
+	  TLCDebug		  off
+	  TLCCoverage		  off
+	  TLCAssert		  off
+	  ProcessScriptMode	  "Default"
+	  ConfigurationMode	  "Optimized"
+	  ConfigAtBuild		  off
+	  RTWUseLocalCustomCode	  off
+	  RTWUseSimCustomCode	  off
+	  IncludeHyperlinkInReport off
+	  LaunchReport		  off
+	  TargetLang		  "C"
+	  IncludeBusHierarchyInRTWFileBlockHierarchyMap	off
+	  IncludeERTFirstTime	  on
+	  GenerateTraceInfo	  off
+	  GenerateTraceReport	  off
+	  GenerateTraceReportSl	  off
+	  GenerateTraceReportSf	  off
+	  GenerateTraceReportEml  off
+	  GenerateCodeInfo	  off
+	  GenerateSLWebview	  off
+	  GenerateCodeMetricsReport off
+	  RTWCompilerOptimization "Off"
+	  CheckMdlBeforeBuild	  "Off"
+	  CustomRebuildMode	  "OnUpdate"
+	  Array {
+	    Type		    "Handle"
+	    Dimension		    2
+	    Simulink.CodeAppCC {
+	      $ObjectID		      10
+	      Version		      "1.11.0"
+	      Array {
+		Type			"Cell"
+		Dimension		9
+		Cell			"IgnoreCustomStorageClasses"
+		Cell			"InsertBlockDesc"
+		Cell			"SFDataObjDesc"
+		Cell			"SimulinkDataObjDesc"
+		Cell			"DefineNamingRule"
+		Cell			"SignalNamingRule"
+		Cell			"ParamNamingRule"
+		Cell			"InlinedPrmAccess"
+		Cell			"CustomSymbolStr"
+		PropName		"DisabledProps"
+	      }
+	      ForceParamTrailComments off
+	      GenerateComments	      on
+	      IgnoreCustomStorageClasses on
+	      IgnoreTestpoints	      off
+	      IncHierarchyInIds	      off
+	      MaxIdLength	      31
+	      PreserveName	      off
+	      PreserveNameWithParent  off
+	      ShowEliminatedStatement off
+	      IncAutoGenComments      off
+	      SimulinkDataObjDesc     off
+	      SFDataObjDesc	      off
+	      MATLABFcnDesc	      off
+	      IncDataTypeInIds	      off
+	      MangleLength	      1
+	      CustomSymbolStrGlobalVar "$R$N$M"
+	      CustomSymbolStrType     "$N$R$M"
+	      CustomSymbolStrField    "$N$M"
+	      CustomSymbolStrFcn      "$R$N$M$F"
+	      CustomSymbolStrFcnArg   "rt$I$N$M"
+	      CustomSymbolStrBlkIO    "rtb_$N$M"
+	      CustomSymbolStrTmpVar   "$N$M"
+	      CustomSymbolStrMacro    "$R$N$M"
+	      DefineNamingRule	      "None"
+	      ParamNamingRule	      "None"
+	      SignalNamingRule	      "None"
+	      InsertBlockDesc	      off
+	      InsertPolySpaceComments off
+	      SimulinkBlockComments   on
+	      MATLABSourceComments    off
+	      EnableCustomComments    off
+	      InlinedPrmAccess	      "Literals"
+	      ReqsInCode	      off
+	      UseSimReservedNames     off
+	    }
+	    Simulink.GRTTargetCC {
+	      $BackupClass	      "Simulink.TargetCC"
+	      $ObjectID		      11
+	      Version		      "1.11.0"
+	      Array {
+		Type			"Cell"
+		Dimension		11
+		Cell			"IncludeMdlTerminateFcn"
+		Cell			"CombineOutputUpdateFcns"
+		Cell			"SuppressErrorStatus"
+		Cell			"ERTCustomFileBanners"
+		Cell			"GenerateSampleERTMain"
+		Cell			"MultiInstanceERTCode"
+		Cell			"PurelyIntegerCode"
+		Cell			"SupportNonInlinedSFcns"
+		Cell			"SupportComplex"
+		Cell			"SupportAbsoluteTime"
+		Cell			"SupportContinuousTime"
+		PropName		"DisabledProps"
+	      }
+	      TargetFcnLib	      "ansi_tfl_tmw.mat"
+	      TargetLibSuffix	      ""
+	      TargetPreCompLibLocation ""
+	      TargetFunctionLibrary   "ANSI_C"
+	      UtilityFuncGeneration   "Auto"
+	      ERTMultiwordTypeDef     "System defined"
+	      FunctionExecutionProfile off
+	      CodeExecutionProfiling  off
+	      ERTCodeCoverageTool     "None"
+	      ERTMultiwordLength      256
+	      MultiwordLength	      2048
+	      GenerateFullHeader      on
+	      GenerateSampleERTMain   off
+	      GenerateTestInterfaces  off
+	      IsPILTarget	      off
+	      ModelReferenceCompliant on
+	      ParMdlRefBuildCompliant on
+	      CompOptLevelCompliant   on
+	      IncludeMdlTerminateFcn  on
+	      GeneratePreprocessorConditionals "Disable all"
+	      CombineOutputUpdateFcns off
+	      CombineSignalStateStructs	off
+	      SuppressErrorStatus     off
+	      ERTFirstTimeCompliant   off
+	      IncludeFileDelimiter    "Auto"
+	      ERTCustomFileBanners    off
+	      SupportAbsoluteTime     on
+	      LogVarNameModifier      "rt_"
+	      MatFileLogging	      on
+	      MultiInstanceERTCode    off
+	      SupportNonFinite	      on
+	      SupportComplex	      on
+	      PurelyIntegerCode	      off
+	      SupportContinuousTime   on
+	      SupportNonInlinedSFcns  on
+	      SupportVariableSizeSignals off
+	      EnableShiftOperators    on
+	      ParenthesesLevel	      "Nominal"
+	      PortableWordSizes	      off
+	      ModelStepFunctionPrototypeControlCompliant off
+	      CPPClassGenCompliant    off
+	      AutosarCompliant	      off
+	      UseMalloc		      off
+	      ExtMode		      off
+	      ExtModeStaticAlloc      off
+	      ExtModeTesting	      off
+	      ExtModeStaticAllocSize  1000000
+	      ExtModeTransport	      0
+	      ExtModeMexFile	      "ext_comm"
+	      ExtModeIntrfLevel	      "Level1"
+	      RTWCAPISignals	      off
+	      RTWCAPIParams	      off
+	      RTWCAPIStates	      off
+	      RTWCAPIRootIO	      off
+	      GenerateASAP2	      off
+	    }
+	    PropName		    "Components"
+	  }
+	}
+	PropName		"Components"
+      }
+      Name		      "Configuration"
+      CurrentDlgPage	      "Solver"
+      ConfigPrmDlgPosition     [ 200, 197, 1080, 827 ] 
+    }
+    PropName		    "ConfigurationSets"
+  }
+  Simulink.ConfigSet {
+    $PropName		    "ActiveConfigurationSet"
+    $ObjectID		    1
+  }
+  WSMdlFileData		  "DataTag0"
+  BlockDefaults {
+    ForegroundColor	    "black"
+    BackgroundColor	    "white"
+    DropShadow		    off
+    NamePlacement	    "normal"
+    FontName		    "Helvetica"
+    FontSize		    10
+    FontWeight		    "normal"
+    FontAngle		    "normal"
+    ShowName		    on
+    BlockRotation	    0
+    BlockMirror		    off
+  }
+  AnnotationDefaults {
+    HorizontalAlignment	    "center"
+    VerticalAlignment	    "middle"
+    ForegroundColor	    "black"
+    BackgroundColor	    "white"
+    DropShadow		    off
+    FontName		    "Helvetica"
+    FontSize		    10
+    FontWeight		    "normal"
+    FontAngle		    "normal"
+    UseDisplayTextAsClickCallback off
+  }
+  LineDefaults {
+    FontName		    "Helvetica"
+    FontSize		    9
+    FontWeight		    "normal"
+    FontAngle		    "normal"
+  }
+  BlockParameterDefaults {
+    Block {
+      BlockType		      Constant
+      Value		      "1"
+      VectorParams1D	      on
+      SamplingMode	      "Sample based"
+      OutMin		      "[]"
+      OutMax		      "[]"
+      OutDataTypeStr	      "Inherit: Inherit from 'Constant value'"
+      LockScale		      off
+      SampleTime	      "inf"
+      FramePeriod	      "inf"
+      PreserveConstantTs      off
+    }
+    Block {
+      BlockType		      SignalToWorkspace
+      VariableName	      "simulink_output"
+      MaxDataPoints	      "1000"
+      Decimation	      "1"
+      FixptAsFi		      off
+      NumInputs		      "1"
+    }
+    Block {
+      BlockType		      ToWorkspace
+      VariableName	      "simulink_output"
+      MaxDataPoints	      "1000"
+      Decimation	      "1"
+      SampleTime	      "0"
+      FixptAsFi		      off
+      NumInputs		      "1"
+    }
+  }
+  System {
+    Name		    "fm_ddc"
+    Location		    [2, 74, 1364, 707]
+    Open		    on
+    ModelBrowserVisibility  off
+    ModelBrowserWidth	    200
+    ScreenColor		    "[0.996078, 0.996078, 0.752941]"
+    PaperOrientation	    "landscape"
+    PaperPositionMode	    "auto"
+    PaperType		    "usletter"
+    PaperUnits		    "inches"
+    TiledPaperMargins	    [0.196850, 0.196850, 0.196850, 0.196850]
+    TiledPageScale	    1
+    ShowPageBoundaries	    off
+    ZoomFactor		    "106"
+    ReportName		    "simulink-default.rpt"
+    SIDHighWatermark	    "30"
+    Block {
+      BlockType		      Reference
+      Name		      "ADC"
+      SID		      "1"
+      Ports		      [1, 1]
+      Position		      [155, 175, 175, 195]
+      BackgroundColor	      "[0.870590, 0.752940, 0.752940]"
+      LibraryVersion	      "1.4107"
+      FontName		      "Arial"
+      FontSize		      9
+      SourceBlock	      "shlslibv1/Ports & Subsystems/Port In"
+      SourceType	      "Synphony Model Compiler Port In"
+      syn_out_wl	      "14"
+      syn_out_fl	      "12"
+      syn_out_dt	      "signed"
+      syn_out_st	      "1/SR"
+      syn_capture	      on
+      syn_register	      on
+      syn_out_sat	      off
+      syn_out_rnd	      on
+      synBlockType	      "port"
+      synLatency	      "1"
+      synBlockId	      "0"
+    }
+    Block {
+      BlockType		      Reference
+      Name		      "CFIR Scope"
+      SID		      "2"
+      Ports		      [1]
+      Position		      [340, 395, 375, 445]
+      LibraryVersion	      "1.473"
+      SourceBlock	      "dspsnks4/Spectrum\nScope"
+      SourceType	      "Spectrum Scope"
+      ShowPortLabels	      "none"
+      SystemSampleTime	      "-1"
+      FunctionWithSeparateData off
+      RTWMemSecFuncInitTerm   "Inherit from model"
+      RTWMemSecFuncExecute    "Inherit from model"
+      RTWMemSecDataConstants  "Inherit from model"
+      RTWMemSecDataInternal   "Inherit from model"
+      RTWMemSecDataParameters "Inherit from model"
+      GeneratePreprocessorConditionals off
+      ScopeProperties	      on
+      Domain		      "Frequency"
+      HorizSpan		      "1"
+      UseBuffer		      on
+      BufferSize	      "2^9"
+      Overlap		      "2^8"
+      TreatMby1Signals	      "M channels"
+      inpFftLenInherit	      off
+      FFTlength		      "128"
+      numAvg		      "17"
+      DisplayProperties	      off
+      AxisGrid		      on
+      Memory		      off
+      FrameNumber	      on
+      AxisLegend	      off
+      AxisZoom		      off
+      OpenScopeAtSimStart     on
+      OpenScopeImmediately    off
+      FigPos		      "[785 600 380 380]"
+      AxisProperties	      off
+      XUnits		      "Hertz"
+      XRange		      "One-sided ([0...Fs/2])"
+      XDisplay		      "0"
+      InheritXIncr	      off
+      XIncr		      "128/SR"
+      XLabel		      "Samples"
+      XLimit		      "Auto"
+      YUnits		      "dBW/Hertz"
+      XMax		      "1"
+      XMin		      "0"
+      YMin		      "-93.2061394535487"
+      YMax		      "-7.27904806219149"
+      YLabel		      "Magnitude-squared, dB"
+      LineProperties	      off
+      wintypeSpecScope	      "Hann"
+      RsSpecScope	      "50"
+      betaSpecScope	      "5"
+      winsampSpecScope	      "Periodic"
+      XAxisParamsVer	      "6.8"
+      isFrameUpgraded	      on
+    }
+    Block {
+      BlockType		      Reference
+      Name		      "CFIR Spec"
+      SID		      "3"
+      Ports		      []
+      Position		      [145, 400, 182, 437]
+      LibraryVersion	      "1.4107"
+      UserDataPersistent      on
+      UserData		      "DataTag1"
+      FontName		      "Arial"
+      SourceBlock	      "shlslibv1/Filtering/FDATool"
+      SourceType	      "Synphony Model Compiler FDATool Interface"
+      ShowPortLabels	      "FromPortIcon"
+      SystemSampleTime	      "-1"
+      FunctionWithSeparateData off
+      RTWMemSecFuncInitTerm   "Inherit from model"
+      RTWMemSecFuncExecute    "Inherit from model"
+      RTWMemSecDataConstants  "Inherit from model"
+      RTWMemSecDataInternal   "Inherit from model"
+      RTWMemSecDataParameters "Inherit from model"
+      GeneratePreprocessorConditionals off
+      synBlockType	      "tool"
+    }
+    Block {
+      BlockType		      Reference
+      Name		      "CFIR_I"
+      SID		      "6"
+      Ports		      [1, 1]
+      Position		      [140, 518, 185, 562]
+      LibraryVersion	      "1.4107"
+      FontName		      "Arial"
+      FontSize		      9
+      SourceBlock	      "shlslibv1/Filtering/FIR"
+      SourceType	      "Synphony Model Compiler FIR"
+      syn_coef_vec	      "syn_get_coefs('CFIR Spec')"
+      syn_coef_fl	      "8"
+      syn_coef_rnd	      "Nearest"
+      syn_show_q	      off
+      syn_dp_f		      "Automatic"
+      syn_dp_wl		      "16"
+      syn_dp_fl		      "8"
+      syn_dp_sat	      off
+      syn_dp_rnd	      "Floor (Truncate)"
+      syn_out_f		      "Specify"
+      syn_out_wl	      "16"
+      syn_out_fl	      "13"
+      syn_out_dt	      "signed"
+      syn_out_sat	      off
+      syn_out_rnd	      "Floor (Truncate)"
+      syn_rst_port	      off
+      syn_en_port	      off
+      synBlockType	      "primitive"
+      synLatency	      "0"
+      synBlockId	      "80"
+    }
+    Block {
+      BlockType		      Reference
+      Name		      "CFIR_Q"
+      SID		      "7"
+      Ports		      [1, 1]
+      Position		      [140, 458, 185, 502]
+      LibraryVersion	      "1.4107"
+      FontName		      "Arial"
+      FontSize		      9
+      SourceBlock	      "shlslibv1/Filtering/FIR"
+      SourceType	      "Synphony Model Compiler FIR"
+      syn_coef_vec	      "syn_get_coefs('CFIR Spec')"
+      syn_coef_fl	      "8"
+      syn_coef_rnd	      "Nearest"
+      syn_show_q	      off
+      syn_dp_f		      "Automatic"
+      syn_dp_wl		      "16"
+      syn_dp_fl		      "8"
+      syn_dp_sat	      off
+      syn_dp_rnd	      "Floor (Truncate)"
+      syn_out_f		      "Specify"
+      syn_out_wl	      "16"
+      syn_out_fl	      "13"
+      syn_out_dt	      "signed"
+      syn_out_sat	      off
+      syn_out_rnd	      "Floor (Truncate)"
+      syn_rst_port	      off
+      syn_en_port	      off
+      synBlockType	      "primitive"
+      synLatency	      "0"
+      synBlockId	      "80"
+    }
+    Block {
+      BlockType		      Reference
+      Name		      "CIC Scope"
+      SID		      "8"
+      Ports		      [1]
+      Position		      [640, 170, 675, 220]
+      LibraryVersion	      "1.473"
+      SourceBlock	      "dspsnks4/Spectrum\nScope"
+      SourceType	      "Spectrum Scope"
+      ShowPortLabels	      "none"
+      SystemSampleTime	      "-1"
+      FunctionWithSeparateData off
+      RTWMemSecFuncInitTerm   "Inherit from model"
+      RTWMemSecFuncExecute    "Inherit from model"
+      RTWMemSecDataConstants  "Inherit from model"
+      RTWMemSecDataInternal   "Inherit from model"
+      RTWMemSecDataParameters "Inherit from model"
+      GeneratePreprocessorConditionals off
+      ScopeProperties	      on
+      Domain		      "Frequency"
+      HorizSpan		      "1"
+      UseBuffer		      on
+      BufferSize	      "2^10"
+      Overlap		      "2^9"
+      TreatMby1Signals	      "M channels"
+      inpFftLenInherit	      off
+      FFTlength		      "128"
+      numAvg		      "16"
+      DisplayProperties	      off
+      AxisGrid		      on
+      Memory		      off
+      FrameNumber	      on
+      AxisLegend	      off
+      AxisZoom		      off
+      OpenScopeAtSimStart     on
+      OpenScopeImmediately    off
+      FigPos		      "[395 600 380 380]"
+      AxisProperties	      off
+      XUnits		      "Hertz"
+      XRange		      "One-sided ([0...Fs/2])"
+      XDisplay		      "0"
+      InheritXIncr	      off
+      XIncr		      "128/SR"
+      XLabel		      "Samples"
+      XLimit		      "Auto"
+      YUnits		      "dBW/Hertz"
+      XMax		      "1"
+      XMin		      "0"
+      YMin		      "-66.8830492621563"
+      YMax		      "-9.39744350931665"
+      YLabel		      "Magnitude-squared, dB"
+      LineProperties	      off
+      wintypeSpecScope	      "Hann"
+      RsSpecScope	      "50"
+      betaSpecScope	      "5"
+      winsampSpecScope	      "Periodic"
+      XAxisParamsVer	      "6.8"
+      isFrameUpgraded	      on
+    }
+    Block {
+      BlockType		      Reference
+      Name		      "CIC_I"
+      SID		      "9"
+      Ports		      [1, 1]
+      Position		      [500, 247, 535, 293]
+      AttributesFormatString  "1.0000000000"
+      LibraryVersion	      "1.4107"
+      FontName		      "Arial"
+      FontSize		      9
+      SourceBlock	      "shlslibv1/Filtering/CIC"
+      SourceType	      "Synphony Model Compiler CIC"
+      ShowPortLabels	      "FromPortIcon"
+      SystemSampleTime	      "-1"
+      FunctionWithSeparateData off
+      RTWMemSecFuncInitTerm   "Inherit from model"
+      RTWMemSecFuncExecute    "Inherit from model"
+      RTWMemSecDataConstants  "Inherit from model"
+      RTWMemSecDataInternal   "Inherit from model"
+      RTWMemSecDataParameters "Inherit from model"
+      GeneratePreprocessorConditionals off
+      syn_cic_type	      "Decimator"
+      syn_m_val		      "1"
+      syn_r_val		      "128"
+      syn_n_val		      "6"
+      syn_out_f		      "Specify"
+      syn_out_wl	      "18"
+      syn_out_fl	      "16"
+      syn_out_dt	      "signed"
+      syn_out_sat	      off
+      syn_out_rnd	      off
+      syn_rst_port	      off
+      syn_en_port	      off
+      synBlockType	      "custom"
+      synLatency	      "1"
+    }
+    Block {
+      BlockType		      Reference
+      Name		      "CIC_Q"
+      SID		      "10"
+      Ports		      [1, 1]
+      Position		      [500, 172, 535, 218]
+      AttributesFormatString  "1.0000000000"
+      LibraryVersion	      "1.4107"
+      FontName		      "Arial"
+      FontSize		      9
+      SourceBlock	      "shlslibv1/Filtering/CIC"
+      SourceType	      "Synphony Model Compiler CIC"
+      ShowPortLabels	      "FromPortIcon"
+      SystemSampleTime	      "-1"
+      FunctionWithSeparateData off
+      RTWMemSecFuncInitTerm   "Inherit from model"
+      RTWMemSecFuncExecute    "Inherit from model"
+      RTWMemSecDataConstants  "Inherit from model"
+      RTWMemSecDataInternal   "Inherit from model"
+      RTWMemSecDataParameters "Inherit from model"
+      GeneratePreprocessorConditionals off
+      syn_cic_type	      "Decimator"
+      syn_m_val		      "1"
+      syn_r_val		      "128"
+      syn_n_val		      "6"
+      syn_out_f		      "Specify"
+      syn_out_wl	      "18"
+      syn_out_fl	      "16"
+      syn_out_dt	      "signed"
+      syn_out_sat	      off
+      syn_out_rnd	      off
+      syn_rst_port	      off
+      syn_en_port	      off
+      synBlockType	      "custom"
+      synLatency	      "1"
+    }
+    Block {
+      BlockType		      Constant
+      Name		      "Constant"
+      SID		      "11"
+      Position		      [45, 246, 105, 274]
+      Value		      "IF/SR"
+      SampleTime	      "1/SR"
+    }
+    Block {
+      BlockType		      Reference
+      Name		      "DDS"
+      SID		      "12"
+      Ports		      [1, 2]
+      Position		      [215, 220, 275, 300]
+      LibraryVersion	      "1.4107"
+      SourceBlock	      "shlslibv1/Sources/DDS"
+      SourceType	      "Synphony Model Compiler DDS"
+      ShowPortLabels	      "FromPortIcon"
+      SystemSampleTime	      "-1"
+      FunctionWithSeparateData off
+      RTWMemSecFuncInitTerm   "Inherit from model"
+      RTWMemSecFuncExecute    "Inherit from model"
+      RTWMemSecDataConstants  "Inherit from model"
+      RTWMemSecDataInternal   "Inherit from model"
+      RTWMemSecDataParameters "Inherit from model"
+      GeneratePreprocessorConditionals off
+      syn_dds_opr	      "sin&cos"
+      syn_dds_meth	      "CORDIC"
+      syn_freq_port	      "port"
+      syn_freq_val	      "5/24"
+      syn_fm_port	      "none"
+      syn_fm_val	      "0"
+      syn_pm_port	      "none"
+      syn_pm_val	      "0"
+      syn_pdither_opr	      on
+      syn_pdither_bits	      "3"
+      syn_rst_port	      off
+      syn_en_port	      off
+      syn_freq_prec	      "2^-32"
+      syn_phase_prec	      "2^-18"
+      syn_dds_wl	      "18"
+      syn_dds_st	      "3/208e6"
+      synBlockType	      "custom"
+      synLatency	      "20"
+    }
+    Block {
+      BlockType		      Reference
+      Name		      "FIR Spec"
+      SID		      "16"
+      Ports		      []
+      Position		      [395, 400, 432, 437]
+      LibraryVersion	      "1.4107"
+      UserDataPersistent      on
+      UserData		      "DataTag2"
+      FontName		      "Arial"
+      SourceBlock	      "shlslibv1/Filtering/FDATool"
+      SourceType	      "Synphony Model Compiler FDATool Interface"
+      ShowPortLabels	      "FromPortIcon"
+      SystemSampleTime	      "-1"
+      FunctionWithSeparateData off
+      RTWMemSecFuncInitTerm   "Inherit from model"
+      RTWMemSecFuncExecute    "Inherit from model"
+      RTWMemSecDataConstants  "Inherit from model"
+      RTWMemSecDataInternal   "Inherit from model"
+      RTWMemSecDataParameters "Inherit from model"
+      GeneratePreprocessorConditionals off
+      synBlockType	      "tool"
+    }
+    Block {
+      BlockType		      Reference
+      Name		      "FIR_I"
+      SID		      "19"
+      Ports		      [1, 1]
+      Position		      [390, 518, 435, 562]
+      LibraryVersion	      "1.4107"
+      FontName		      "Arial"
+      FontSize		      9
+      SourceBlock	      "shlslibv1/Filtering/FIR"
+      SourceType	      "Synphony Model Compiler FIR"
+      syn_coef_vec	      "syn_get_coefs('FIR Spec')"
+      syn_coef_fl	      "8"
+      syn_coef_rnd	      "Nearest"
+      syn_show_q	      off
+      syn_dp_f		      "Automatic"
+      syn_dp_wl		      "16"
+      syn_dp_fl		      "8"
+      syn_dp_sat	      off
+      syn_dp_rnd	      "Floor (Truncate)"
+      syn_out_f		      "Specify"
+      syn_out_wl	      "16"
+      syn_out_fl	      "12"
+      syn_out_dt	      "signed"
+      syn_out_sat	      off
+      syn_out_rnd	      "Floor (Truncate)"
+      syn_rst_port	      off
+      syn_en_port	      off
+      synBlockType	      "primitive"
+      synLatency	      "0"
+      synBlockId	      "80"
+    }
+    Block {
+      BlockType		      Reference
+      Name		      "FIR_Q"
+      SID		      "20"
+      Ports		      [1, 1]
+      Position		      [390, 458, 435, 502]
+      LibraryVersion	      "1.4107"
+      FontName		      "Arial"
+      FontSize		      9
+      SourceBlock	      "shlslibv1/Filtering/FIR"
+      SourceType	      "Synphony Model Compiler FIR"
+      syn_coef_vec	      "syn_get_coefs('FIR Spec')"
+      syn_coef_fl	      "8"
+      syn_coef_rnd	      "Nearest"
+      syn_show_q	      off
+      syn_dp_f		      "Automatic"
+      syn_dp_wl		      "16"
+      syn_dp_fl		      "8"
+      syn_dp_sat	      off
+      syn_dp_rnd	      "Floor (Truncate)"
+      syn_out_f		      "Specify"
+      syn_out_wl	      "16"
+      syn_out_fl	      "12"
+      syn_out_dt	      "signed"
+      syn_out_sat	      off
+      syn_out_rnd	      "Floor (Truncate)"
+      syn_rst_port	      off
+      syn_en_port	      off
+      synBlockType	      "primitive"
+      synLatency	      "0"
+      synBlockId	      "80"
+    }
+    Block {
+      BlockType		      Reference
+      Name		      "Freq"
+      SID		      "13"
+      Ports		      [1, 1]
+      Position		      [145, 250, 165, 270]
+      BackgroundColor	      "[0.870590, 0.752940, 0.752940]"
+      LibraryVersion	      "1.4107"
+      FontName		      "Arial"
+      FontSize		      9
+      SourceBlock	      "shlslibv1/Ports & Subsystems/Port In"
+      SourceType	      "Synphony Model Compiler Port In"
+      syn_out_wl	      "32"
+      syn_out_fl	      "32"
+      syn_out_dt	      "unsigned"
+      syn_out_st	      "1/SR"
+      syn_capture	      on
+      syn_register	      on
+      syn_out_sat	      off
+      syn_out_rnd	      on
+      synBlockType	      "port"
+      synLatency	      "1"
+      synBlockId	      "0"
+    }
+    Block {
+      BlockType		      Reference
+      Name		      "I_out"
+      SID		      "14"
+      Ports		      [1, 1]
+      Position		      [605, 470, 625, 490]
+      BackgroundColor	      "[0.870590, 0.752940, 0.752940]"
+      LibraryVersion	      "1.4107"
+      FontName		      "Arial"
+      FontSize		      9
+      SourceBlock	      "shlslibv1/Ports & Subsystems/Port Out"
+      SourceType	      "Synphony Model Compiler Port Out"
+      syn_capture	      on
+      syn_register	      on
+      synBlockType	      "port"
+      synLatency	      "1"
+      synBlockId	      "1"
+    }
+    Block {
+      BlockType		      Reference
+      Name		      "Input Scope"
+      SID		      "15"
+      Ports		      [1]
+      Position		      [445, 115, 480, 165]
+      LibraryVersion	      "1.473"
+      SourceBlock	      "dspsnks4/Spectrum\nScope"
+      SourceType	      "Spectrum Scope"
+      ShowPortLabels	      "none"
+      SystemSampleTime	      "-1"
+      FunctionWithSeparateData off
+      RTWMemSecFuncInitTerm   "Inherit from model"
+      RTWMemSecFuncExecute    "Inherit from model"
+      RTWMemSecDataConstants  "Inherit from model"
+      RTWMemSecDataInternal   "Inherit from model"
+      RTWMemSecDataParameters "Inherit from model"
+      GeneratePreprocessorConditionals off
+      ScopeProperties	      on
+      Domain		      "Frequency"
+      HorizSpan		      "1"
+      UseBuffer		      on
+      BufferSize	      "2^12"
+      Overlap		      "2^11"
+      TreatMby1Signals	      "M channels"
+      inpFftLenInherit	      off
+      FFTlength		      "128"
+      numAvg		      "16"
+      DisplayProperties	      off
+      AxisGrid		      on
+      Memory		      off
+      FrameNumber	      on
+      AxisLegend	      off
+      AxisZoom		      off
+      OpenScopeAtSimStart     on
+      OpenScopeImmediately    off
+      FigPos		      "[5 600 380 380]"
+      AxisProperties	      off
+      XUnits		      "Hertz"
+      XRange		      "One-sided ([0...Fs/2])"
+      XDisplay		      "0"
+      InheritXIncr	      off
+      XIncr		      "1/SR"
+      XLabel		      "Samples"
+      XLimit		      "Auto"
+      YUnits		      "dBW/Hertz"
+      XMax		      "1"
+      XMin		      "0"
+      YMin		      "-19.5299787439029"
+      YMax		      "9.72164383894065"
+      YLabel		      "Magnitude-squared, dB"
+      LineProperties	      off
+      wintypeSpecScope	      "Hann"
+      RsSpecScope	      "50"
+      betaSpecScope	      "5"
+      winsampSpecScope	      "Periodic"
+      XAxisParamsVer	      "6.8"
+      isFrameUpgraded	      on
+    }
+    Block {
+      BlockType		      Reference
+      Name		      "Mult"
+      SID		      "21"
+      Ports		      [2, 1]
+      Position		      [390, 175, 430, 215]
+      LibraryVersion	      "1.4107"
+      FontName		      "Arial"
+      FontSize		      9
+      SourceBlock	      "shlslibv1/Math Functions/Mult"
+      SourceType	      "Synphony Model Compiler Mult"
+      syn_out_f		      "Specify"
+      syn_out_wl	      "18"
+      syn_out_fl	      "16"
+      syn_out_dt	      "signed"
+      syn_out_sat	      off
+      syn_out_rnd	      "Floor (Truncate)"
+      syn_inh_port	      off
+      syn_inh_st	      off
+      syn_inh_stf	      "1"
+      synBlockType	      "primitive"
+      synLatency	      "0"
+      synBlockId	      "3"
+      syn_opr_mode	      "1"
+    }
+    Block {
+      BlockType		      Reference
+      Name		      "Mult1"
+      SID		      "22"
+      Ports		      [2, 1]
+      Position		      [390, 250, 430, 290]
+      LibraryVersion	      "1.4107"
+      FontName		      "Arial"
+      FontSize		      9
+      SourceBlock	      "shlslibv1/Math Functions/Mult"
+      SourceType	      "Synphony Model Compiler Mult"
+      syn_out_f		      "Specify"
+      syn_out_wl	      "18"
+      syn_out_fl	      "16"
+      syn_out_dt	      "signed"
+      syn_out_sat	      off
+      syn_out_rnd	      "Floor (Truncate)"
+      syn_inh_port	      off
+      syn_inh_st	      off
+      syn_inh_stf	      "1"
+      synBlockType	      "primitive"
+      synLatency	      "0"
+      synBlockId	      "3"
+      syn_opr_mode	      "1"
+    }
+    Block {
+      BlockType		      Reference
+      Name		      "Output Scope"
+      SID		      "23"
+      Ports		      [1]
+      Position		      [575, 400, 610, 450]
+      LibraryVersion	      "1.473"
+      SourceBlock	      "dspsnks4/Spectrum\nScope"
+      SourceType	      "Spectrum Scope"
+      ShowPortLabels	      "none"
+      SystemSampleTime	      "-1"
+      FunctionWithSeparateData off
+      RTWMemSecFuncInitTerm   "Inherit from model"
+      RTWMemSecFuncExecute    "Inherit from model"
+      RTWMemSecDataConstants  "Inherit from model"
+      RTWMemSecDataInternal   "Inherit from model"
+      RTWMemSecDataParameters "Inherit from model"
+      GeneratePreprocessorConditionals off
+      ScopeProperties	      on
+      Domain		      "Frequency"
+      HorizSpan		      "1"
+      UseBuffer		      on
+      BufferSize	      "2^8"
+      Overlap		      "2^7"
+      TreatMby1Signals	      "M channels"
+      inpFftLenInherit	      off
+      FFTlength		      "128"
+      numAvg		      "10"
+      DisplayProperties	      off
+      AxisGrid		      on
+      Memory		      off
+      FrameNumber	      on
+      AxisLegend	      off
+      AxisZoom		      off
+      OpenScopeAtSimStart     on
+      OpenScopeImmediately    off
+      FigPos		      "[785 200 380 380]"
+      AxisProperties	      off
+      XUnits		      "Hertz"
+      XRange		      "One-sided ([0...Fs/2])"
+      XDisplay		      "0"
+      InheritXIncr	      off
+      XIncr		      "128/SR"
+      XLabel		      "Samples"
+      XLimit		      "Auto"
+      YUnits		      "dBW/Hertz"
+      XMax		      "1"
+      XMin		      "0"
+      YMin		      "-93.2061394535487"
+      YMax		      "-7.27904806219149"
+      YLabel		      "Magnitude-squared, dB"
+      LineProperties	      off
+      wintypeSpecScope	      "Hann"
+      RsSpecScope	      "50"
+      betaSpecScope	      "5"
+      winsampSpecScope	      "Periodic"
+      XAxisParamsVer	      "6.8"
+      isFrameUpgraded	      on
+    }
+    Block {
+      BlockType		      Reference
+      Name		      "Q_out1"
+      SID		      "24"
+      Ports		      [1, 1]
+      Position		      [605, 530, 625, 550]
+      BackgroundColor	      "[0.870590, 0.752940, 0.752940]"
+      LibraryVersion	      "1.4107"
+      FontName		      "Arial"
+      FontSize		      9
+      SourceBlock	      "shlslibv1/Ports & Subsystems/Port Out"
+      SourceType	      "Synphony Model Compiler Port Out"
+      syn_capture	      on
+      syn_register	      on
+      synBlockType	      "port"
+      synLatency	      "1"
+      synBlockId	      "1"
+    }
+    Block {
+      BlockType		      Reference
+      Name		      "SHLSTool"
+      SID		      "26"
+      Ports		      []
+      Position		      [330, 60, 367, 97]
+      BackgroundColor	      "[0.870590, 0.752940, 0.752940]"
+      LibraryVersion	      "1.4107"
+      FontName		      "Arial"
+      SourceBlock	      "shlslibv1/SHLSTool"
+      SourceType	      "Synphony HLS Toolbox"
+      ShowPortLabels	      "FromPortIcon"
+      SystemSampleTime	      "-1"
+      FunctionWithSeparateData off
+      RTWMemSecFuncInitTerm   "Inherit from model"
+      RTWMemSecFuncExecute    "Inherit from model"
+      RTWMemSecDataConstants  "Inherit from model"
+      RTWMemSecDataInternal   "Inherit from model"
+      RTWMemSecDataParameters "Inherit from model"
+      GeneratePreprocessorConditionals off
+      synBlockType	      "tool"
+      syn_dsp_mode	      "FPGA"
+    }
+    Block {
+      BlockType		      Reference
+      Name		      "Signal From\nWorkspace"
+      SID		      "25"
+      Ports		      [0, 1]
+      Position		      [50, 168, 105, 202]
+      LibraryVersion	      "1.712"
+      SourceBlock	      "dspsrcs4/Signal From\nWorkspace"
+      SourceType	      "Signal From Workspace"
+      ShowPortLabels	      "FromPortIcon"
+      SystemSampleTime	      "-1"
+      FunctionWithSeparateData off
+      RTWMemSecFuncInitTerm   "Inherit from model"
+      RTWMemSecFuncExecute    "Inherit from model"
+      RTWMemSecDataConstants  "Inherit from model"
+      RTWMemSecDataInternal   "Inherit from model"
+      RTWMemSecDataParameters "Inherit from model"
+      GeneratePreprocessorConditionals off
+      X			      "ddc_in"
+      Ts		      "1/SR"
+      nsamps		      "1"
+      OutputAfterFinalValue   "Cyclic repetition"
+      ignoreOrWarnInputAndFrameLengths off
+    }
+    Block {
+      BlockType		      Reference
+      Name		      "SynFixPtTool"
+      SID		      "27"
+      Ports		      []
+      Position		      [260, 60, 300, 100]
+      BackgroundColor	      "[0.870590, 0.752940, 0.752940]"
+      LibraryVersion	      "1.4107"
+      FontName		      "Arial"
+      SourceBlock	      "shlslibv1/SynFixPtTool"
+      SourceType	      "Synphony HLS SynFixPtTool"
+      ShowPortLabels	      "FromPortIcon"
+      SystemSampleTime	      "-1"
+      FunctionWithSeparateData off
+      RTWMemSecFuncInitTerm   "Inherit from model"
+      RTWMemSecFuncExecute    "Inherit from model"
+      RTWMemSecDataConstants  "Inherit from model"
+      RTWMemSecDataInternal   "Inherit from model"
+      RTWMemSecDataParameters "Inherit from model"
+      GeneratePreprocessorConditionals off
+      synBlockType	      "tool"
+    }
+    Block {
+      BlockType		      ToWorkspace
+      Name		      "To Workspace"
+      SID		      "28"
+      Ports		      [1]
+      Position		      [665, 465, 725, 495]
+      VariableName	      "Iout"
+      MaxDataPoints	      "inf"
+      SampleTime	      "-1"
+      SaveFormat	      "Structure With Time"
+    }
+    Block {
+      BlockType		      ToWorkspace
+      Name		      "To Workspace1"
+      SID		      "29"
+      Ports		      [1]
+      Position		      [665, 525, 725, 555]
+      VariableName	      "Qout"
+      MaxDataPoints	      "inf"
+      SampleTime	      "-1"
+      SaveFormat	      "Structure With Time"
+    }
+    Block {
+      BlockType		      SignalToWorkspace
+      Name		      "sig2wks"
+      SID		      "30"
+      Ports		      [1]
+      Position		      [330, 308, 385, 332]
+      CopyFcn		      "dspblkcopystw(gcbh);"
+      FontName		      "Arial"
+      VariableName	      "dds_out"
+      MaxDataPoints	      "inf"
+      SaveFormat	      "Array"
+      Save2DMode	      "Inherit from input (this choice will be removed - see release notes)"
+    }
+    Line {
+      SrcBlock		      "ADC"
+      SrcPort		      1
+      Points		      [115, 0]
+      Branch {
+	Points			[40, 0]
+	Branch {
+	  DstBlock		  "Mult"
+	  DstPort		  1
+	}
+	Branch {
+	  Points		  [0, 75]
+	  DstBlock		  "Mult1"
+	  DstPort		  1
+	}
+      }
+      Branch {
+	Points			[0, -45]
+	DstBlock		"Input Scope"
+	DstPort			1
+      }
+    }
+    Line {
+      SrcBlock		      "Constant"
+      SrcPort		      1
+      DstBlock		      "Freq"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Freq"
+      SrcPort		      1
+      DstBlock		      "DDS"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "DDS"
+      SrcPort		      1
+      Points		      [0, -35]
+      DstBlock		      "Mult"
+      DstPort		      2
+    }
+    Line {
+      SrcBlock		      "DDS"
+      SrcPort		      2
+      Points		      [30, 0]
+      Branch {
+	DstBlock		"Mult1"
+	DstPort			2
+      }
+      Branch {
+	Points			[-5, 0; 0, 40]
+	DstBlock		"sig2wks"
+	DstPort			1
+      }
+    }
+    Line {
+      SrcBlock		      "CIC_Q"
+      SrcPort		      1
+      Points		      [0, 0; 50, 0]
+      Branch {
+	Points			[0, 190; -475, 0; 0, 95]
+	DstBlock		"CFIR_Q"
+	DstPort			1
+      }
+      Branch {
+	DstBlock		"CIC Scope"
+	DstPort			1
+      }
+    }
+    Line {
+      SrcBlock		      "CFIR_Q"
+      SrcPort		      1
+      Points		      [135, 0]
+      Branch {
+	DstBlock		"FIR_Q"
+	DstPort			1
+      }
+      Branch {
+	DstBlock		"CFIR Scope"
+	DstPort			1
+      }
+    }
+    Line {
+      SrcBlock		      "CFIR_I"
+      SrcPort		      1
+      DstBlock		      "FIR_I"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "CIC_I"
+      SrcPort		      1
+      Points		      [25, 0; 0, 105; -475, 0; 0, 165]
+      DstBlock		      "CFIR_I"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "FIR_Q"
+      SrcPort		      1
+      Points		      [120, 0]
+      Branch {
+	DstBlock		"I_out"
+	DstPort			1
+      }
+      Branch {
+	DstBlock		"Output Scope"
+	DstPort			1
+      }
+    }
+    Line {
+      SrcBlock		      "FIR_I"
+      SrcPort		      1
+      DstBlock		      "Q_out1"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "I_out"
+      SrcPort		      1
+      DstBlock		      "To Workspace"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Q_out1"
+      SrcPort		      1
+      DstBlock		      "To Workspace1"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Mult1"
+      SrcPort		      1
+      DstBlock		      "CIC_I"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Mult"
+      SrcPort		      1
+      DstBlock		      "CIC_Q"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Signal From\nWorkspace"
+      SrcPort		      1
+      DstBlock		      "ADC"
+      DstPort		      1
+    }
+    Annotation {
+      Name		      "FM Design strategy:\nFreq.  Synthesis with >110dB SFDR\n3-stage filtering:\n- 6-stage CIC with x128"
+      " decimation\n-  compensation FIR\n-  adjacent channel FIR"
+      Position		      [68, 96]
+      HorizontalAlignment     "left"
+      BackgroundColor	      "yellow"
+      DropShadow	      on
+    }
+  }
+}
+MatData {
+  NumRecords		  3
+  DataRecord {
+    Tag			    DataTag2
+    Data		    "  %)30     .    J#X   8    (     @         %    \"     $    !     0         %  0 #0    $   !U    <VED96"
+    ")A<@       &9V=&]O;         !C=7)R96YT7V9I;'0 9FEL=&5R36%D94)Y &-U<G)E;G1&<P    !C=7)R96YT3F%M90  =F5R<VEO;@      "
+    " &UC;V1E          !H1FEG                #@   . H   &    \"     (         !0    @    !     0    $         !0 $  T  "
+    "  !    00   &-U<G)E;G1P86YE; !D97-I9VX         :6UP;W)T         &1S<&9W:7H       !X9F]R;0                    X    "
+    "X    !@    @    $          4    (     0    8    !         !     &    9&5S:6=N   .    @ T   8    (     @         % "
+    "   \"     $    !     0         %  0 $P    $   \"^    5&%G                     %9E<G-I;VX               !I<T1E<VEG;"
+    "F5D            4F5S<&]N<V54>7!E         %-U8E1Y<&4               !$97-I9VY-971H;V0         0W5R<F5N=$9S           "
+    "  %)E<W!O;G-E5'EP94-32%1A9P!3=&%T:6-297-P;VYS90      0V]M<&]N96YT<P              #@   $@    &    \"     0         "
+    "!0    @    !    $@    $         $    !(   !S:6=G=6DN9&5S:6=N<&%N96P        .    .     8    (    !@         %    \""
+    "     $    !     0         )    \"            / _#@   #     &    \"     D\"        !0    @    !     0    $         "
+    " @ !  $    .    ,     8    (    !          %    \"     $    \"     0         0  ( ;'    X    P    !@    @    $    "
+    "      4    (     0    (    !         !   @!L<   #@   $     &    \"     0         !0    @    !    #0    $         $"
+    "     T   !F:6QT9&5S+G)E;65Z    #@   ,     &    \"     (         !0    @    !     0    $         !0 $  8    !    # "
+    "   '9A;'5E '5N:71S       .    .     8    (    !@         %    \"     $    !     0         )    \"           <.= #@"
+    "   #     &    \"     0         !0    @    !     @    $         $  \" $AZ   .    6     8    (    !          %    \""
+    "     $    F     0         0    )@   &9D871O;VQ?9FEL=&5R7W1Y<&5?9G)A;65<9FEL=&5R9&5S:6=N   .    ,     8    (    !  "
+    "        %    \"     $    #     0         0  , ;V9F  X   \"@\"0  !@    @    !          4    (     0    4    !      "
+    "    X   \"H 0  !@    @    \"          4    (     0    $    !          4 !  )     0   \"T   !486<       !697)S:6]N "
+    " !I<TUI;D]R9 !O<F1E<@    !M;V1E           .    2     8    (    !          %    \"     $    2     0         0    $@"
+    "   '-I9V=U:2YF:6QT97)O<F1E<@        X    X    !@    @    &          4    (     0    $    !          D    (        "
+    "    \\#\\.    ,     8    (    \"0(        %    \"     $    !     0         \"  $  0    X    P    !@    @    $     "
+    "     4    (     0    (    !         !   @ V,P  #@   #@    &    \"     0         !0    @    !    !P    $         $ "
+    "    <   !S<&5C:69Y  X    P 0  !@    @    \"          4    (     0    $    !          4 !  .     0   \"H   !486<   "
+    "           %9E<G-I;VX         1&5N<VET>49A8W1O<@         .    2     8    (    !          %    \"     $    8     0 "
+    "        0    &    '-I9V=U:2YR96UE>F]P=&EO;G-F<F%M90X    X    !@    @    &          4    (     0    $    !         "
+    " D    (            \\#\\.    ,     8    (    !          %    \"     $    \"     0         0  ( ,38   X    H @  !@ "
+    "   @    \"          4    (     0    $    !          4 !  *     0   #P   !486<         5F5R<VEO;@   &9R97%5;FET<P!&"
+    "<P          1G!A<W,      $9S=&]P            #@   %     &    \"     0         !0    @    !    '0    $         $    "
+    "!T   !F9&%D97-I9VYP86YE;\"YL<&9R97%P87-S<W1O<     X    X    !@    @    &          4    (     0    $    !          "
+    "D    (            \\#\\.    2     8    (    !          %    \"     $    3     0         0    $P   $YO<FUA;&EZ960@*"
+    "# @=&\\@,2D       X    P    !@    @    $          4    (               !         !          #@   $     &    \"    "
+    " 0         !0    @    !    #@    $         $     X   !M9FER7W!A<W-?961G90  #@   $     &    \"     0         !0    "
+    "@    !    #P    $         $     \\   !M9FER7W-T;W!B7W-T<G0 #@   /@\"   &    \"     (         !0    @    !     0   "
+    " $         !0 $  D    !    6@   %1A9P       %9E<G-I;VX  $E25'EP90   &UA9U5N:71S $%P87-S     $%S=&]P     $1P87-S   "
+    "  $1S=&]P     $5P87-S     $5S=&]P              X   !(    !@    @    $          4    (     0   !0    !         !   "
+    "  4    9F1A9&5S:6=N<&%N96PN;'!M86<     #@   #@    &    \"     8         !0    @    !     0    $         \"0    @  "
+    "         #P/PX    P    !@    @    $          4    (     0    ,    !         !   P!&25( #@   #     &    \"     0   "
+    "      !0    @    !     @    $         $  \" &1\"   .    ,     8    (    !          %    \"     $    \"     0      "
+    "   0  ( +C$   X    P    !@    @    $          4    (     0    (    !         !   @ Q.   #@   #     &    \"     0  "
+    "       !0    @    !     P    $         $  # # N,0 .    .     8    (    !          %    \"     $    %     0        "
+    " 0    !0   # N,# Q    #@   #     &    \"     0         !0    @    !     P    $         $  # # N,0 .    .     8    "
+    "(    !          %    \"     $    %     0         0    !0   # N,# Q    #@   %@!   &    \"     (         !0    @    "
+    "!     0    $         !0 $  @    !    (    %1A9P      5F5R<VEO;@!7<&%S<P   %=S=&]P    #@   $@    &    \"     0     "
+    "    !0    @    !    %P    $         $    !<   !F9&%D97-I9VYP86YE;\"YL<'=E:6=H=  .    .     8    (    !@         % "
+    "   \"     $    !     0         )    \"            / _#@   #     &    \"     0         !0    @    !     P    $     "
+    "    $  # # N,0 .    ,     8    (    !          %    \"     $    \"     0         0  ( -C    X   !0\"0  !@    @    "
+    "\"          4    (     0    $    !          4 !  /     0   #P   !486<               !697)S:6]N          !C;V5F9G-P"
+    "96-I9FEE<@!F<W-P96-I9FEE<@          #@   $     &    \"     0         !0    @    !    #0    $         $     T   !S:"
+    "6=G=6DN:6UP;W)T    #@   #@    &    \"     8         !0    @    !     0    $         \"0    @           #P/PX   #0!"
+    "@  !@    @    \"          4    (     0    $    !          4 !  2     0   %H   !486<                   !697)S:6]N  "
+    "            !#;V5F9FEC:65N=',       !396QE8W1E9%-T<G5C='5R90!33U,                            .    2     8    (    "
+    "!          %    \"     $    4     0         0    %    &-O969F:6-I96YT<W!E8VEF:65R      X    X    !@    @    &     "
+    "     4    (     0    $    !          D    (            \\#\\.    $ 4   8    (     @         %    \"     $    !    "
+    " 0         %  0 #P    $   !X    =&8                 9FER                <V]S                ;&%T=&EC96%R;6$     ;&"
+    "%T=&EC96%L;'!A<W, ;&%T=&EC96UA;6EN    ;&%T=&EC96UA;6%X    8F%S969I;'1E<@      #@   .@    &    \"     $         !0 "
+    "   @    !     @    $         #@   %@    &    \"     0         !0    @    !    (0    $         $    \"$   !;,\"XP,C"
+    "@@(# N,#4S(# N,#<Q(\" P+C U,R P+C R.%T         #@   %@    &    \"     0         !0    @    !    (0    $         $ "
+    "   \"$   !;,2XP,# @+3(N,#(V(#(N,30X(\"TQ+C$U.2 P+C(W.5T         #@   (@    &    \"     $         !0    @    !     "
+    "0    $         #@   %@    &    \"     0         !0    @    !    *     $         $    \"@   !;+3 N,# X(\" P+C V-\" "
+    "P+C0T,R P+C0T,R P+C V-\" M,\"XP,#A=#@   )@    &    \"     $         !0    @    !     @    $         #@   #     &  "
+    "  \"     0         !0    @    !     P    $         $  # %-/4P .    ,     8    (    !          %    \"     $    !  "
+    "   0         0  $ ,0    X   \"8    !@    @    !          4    (     0    (    !          X    P    !@    @    $   "
+    "       4    (     0    $    !         !   0!+    #@   #     &    \"     0         !0    @    !     0    $         "
+    "$  ! %8    .    8     8    (     0         %    \"     $    !     0         .    ,     8    (    !          %    \""
+    "     $    !     0         0  $ 2P    X   !@    !@    @    !          4    (     0    $    !          X    P    !@ "
+    "   @    $          4    (     0    $    !         !   0!+    #@   &     &    \"     $         !0    @    !     0  "
+    "  $         #@   #     &    \"     0         !0    @    !     0    $         $  ! $L    .    8     8    (     0   "
+    "      %    \"     $    !     0         .    ,     8    (    !          %    \"     $    \"     0         0  ( 2&0 "
+    "  X   !0    !@    @    $          4    (     0   !D    !         !     9    1&ER96-T+49O<FT@24D@5')A;G-P;W-E9     "
+    "     .    ,     8    (    !          %    \"     $    #     0         0  , ;V9F  X   !P 0  !@    @    \"          "
+    "4    (     0    $    !          4 !  (     0   \"    !486<      %9E<G-I;VX 56YI=',   !686QU90    X   !(    !@    @"
+    "    $          4    (     0   !(    !         !     2    <VEG9W5I+F9S<W!E8VEF:65R        #@   #@    &    \"     8 "
+    "        !0    @    !     0    $         \"0    @           #P/PX   !(    !@    @    $          4    (     0   !,  "
+    "  !         !     3    3F]R;6%L:7IE9\" H,\"!T;R Q*0      #@   #     &    \"     0         !0    @    !     @    $ "
+    "        $  \" $9S   .    , \\   8    (     @         %    \"     $    !     0         %  0 %     $    $ 0  5&%G   "
+    "                   !697)S:6]N                 $9I;'1E<@                  57-E0F%S:6-%;&5M96YT<P    !$97-T:6YA=&EO;"
+    "@           %5S97)$969I;F5D            0FQO8VM.86UE              !/=F5R=W)I=&5\";&]C:P       $]P=&EM:7IE6F5R;W,   "
+    "      3W!T:6UI>F5/;F5S          !/<'1I;6EZ94YE9T]N97,      $]P=&EM:7IE1&5L87E#:&%I;G, 3W!T:6UI>F538V%L959A;'5E<P  "
+    "    #@   $     &    \"     0         !0    @    !    #@    $         $     X   !S:6=G=6DN9'-P9G=I>@  #@   #@    & "
+    "   \"     8         !0    @    !     0    $         \"0    @           #P/PX    8\"P  !@    @    1          $     "
+    "     0    8   !H86YD;&4   $    +    9&9I;'0N9&9F:7(       X   #0\"@  !@    @    !          4    (    !     $    ! "
+    "         X   !  0  !@    @    )          4    (    $ $   $    !          (    0 0   0    4   !@    D    *@   #P   "
+    " \" $  ! !             &1F:6QT &1F9FER &9I;'1E<G%U86YT:7IE<@!N8V]E9F9S $U!5$Q!0B!A<G)A>0                          "
+    "      $    \"       !       !     P                         !    !0    $    !                                     "
+    "0               0               @                    $                    !    !     $                    .    >  "
+    "   8    (     0         %    \"     $    !     0         .    2     8    (    #0         %    \"     4    !     0 "
+    "        &    %        -T\"     0    $    !          X    X    !@    @    &          4    (     0    $    !        "
+    "  D    (            4$ .    F @   8    (     @         %    \"     $    !     0         %  0 %     $   #P    8VQA<"
+    "W,                   !V97)S:6]N                 %!E<G-I<W1E;G1-96UO<GD     3G5M4V%M<&QE<U!R;V-E<W-E9 !3=&%T97,    "
+    "              ')E9FYU;0                  9F1E<VEG;@                !F;65T:&]D                 &UE87-U<F5M96YT<P   "
+    "       <')I=F9Q                  !!<FET:&UE=&EC             '!R:79N;W)M1V%I;@          #@   $     &    \"     0   "
+    "      !0    @    !    \"P    $         $     L   !D9FEL=\"YD9F9I<@      #@   -     &    \"     (         !0    @  "
+    "  !     0    $         !0 $  P    !    &    &YU;6)E<@       &1E<V-R:7!T:6]N  X    X    !@    @    &          4    "
+    "(     0    $    !          D    (            $$ .    .     8    (    !          %    \"     $    &     0         0"
+    "    !@   %(R,# X8@  #@   #     &    \"     D\"        !0    @    !     0    $          @ !       .    .     8    ("
+    "    !@         %    \"     $    !     0         )    \"               #@   \"@\"   &    \"     8         !0    @  "
+    "  _     0    $         \"0   /@!                                                                                  "
+    "                                                                                                                  "
+    "                                                                                                                  "
+    "                                                                                                                  "
+    "                                                                                                                  "
+    "                                                                                                                  "
+    "                       .    , (   8    (    !@         %    \"     $   !      0         )      (  /0<4>\"J!S\"_KP<"
+    "X!QL?5;^&-1]MV,]JO^;57+@=^76_\"!?[LD K=[]1HH4^A!MGOVI5\\$F8&6 _\"%G,8-M,=#\\ T6AKHTIH/T-=63]6W6:_2=%^WHSV>K^K;_M3'"
+    "DILOY+9=DX4'W,_TV1T:N,(@S^N2IG985MO/\\]<>4_<_W^_)!06.^JLBK_LR0'7OIAMO[])JR_058H_P]NC2.EFDC^40> /A(=A/]JXV4K@@I6_^("
+    "TG,*5*F;]@E'*NQIM>/WU=MG-O!Z(_*#&*(4( HC]J,=,1G5&(ORL5^*OA[K\"_*(P*&=,$KK_HYV9K]R6H/YW%0MP\"]LH_O'/7MYU7U3^\\<]>WG"
+    "5?5/YW%0MP\"]LH_Z.=F:_<EJ#\\HC H9TP2NORL5^*OA[K\"_:C'3$9U1B+\\H,8HA0@\"B/WU=MG-O!Z(_8)1RKL:;7C_XC2<PI4J9O]JXV4K@@I"
+    "6_E$'@#X2'83_#VZ-(Z6:2/[])JR_058H_[,D!U[Z8;;\\D%!8[ZJR*O\\]<>4_<_W^_KDJ9V6%;;S_39'1JXPB#/Y+9=DX4'W,_JV_[4QY*;+])T7"
+    "[>C/9ZOT-=63]6W6:_ -%H:Z-*:#\\(6<Q@VTQT/VI5\\$F8&6 _4:*%/H0;9[\\(%_NR0\"MWO^;57+@=^76_AC4?;=C/:K^O!S@'&Q]5O_0<4>\""
+    "J!S\"_#@   #     &    \"     8         !0    @               $         \"0         .    ,     8    (    !@        "
+    " %    \"                0         )          X    P    !@    @    &          4    (               !          D    "
+    "     #@   $@    &    \"     T         !0    @    %     0    $         !@   !0       #= @    $    !     @         ."
+    "    .     8    (    !          %    \"     $    &     0         0    !@   &1O=6)L90  #@   #     &    \"     8     "
+    "    !0    @               $         \"0         .    ,     8    (    !          %    \"     $    #     0         0"
+    "  , ;V9F  X    X    !@    @    $          4    (     0    <    !         !     '    0W5R<F5N=  .    .     8    (  "
+    "  !          %    \"     $    (     0         0    \"    %5N=&ET;&5D#@   #@    &    \"     0         !0    @    ! "
+    "   !@    $         $     8   !&:6QT97(   X    P    !@    @    $          4    (     0    ,    !         !   P!O9F8"
+    " #@   #     &    \"     0         !0    @    !     P    $         $  # &]F9@ .    ,     8    (    !          %    "
+    "\"     $    #     0         0  , ;V9F  X    P    !@    @    $          4    (     0    ,    !         !   P!O9F8 #"
+    "@   #     &    \"     0         !0    @    !     P    $         $  # &]F9@ .    ,     8    (    !          %    \""
+    "     $    #     0         0  , ;V9F  X      @  !@    @    \"          4    (     0    $    !          4 !  0     0"
+    "   $    !3;W5R8V54>7!E        5&%R9V5T5'EP90       %-O=7)C949R97%U96YC>0!487)G971&<F5Q=65N8WD #@   #@    &    \"  "
+    "   0         !0    @    !    !P    $         $     <   !,;W=P87-S  X    X    !@    @    $          4    (     0   "
+    " <    !         !     '    3&]W<&%S<P .    0     8    (    !          %    \"     $    *     0         0    \"@   "
+    "# N,# P-CDT-#8        .    N     8    (     0         %    \"     (    !     0         .    0     8    (    !     "
+    "     %    \"     $    *     0         0    \"@   # N,# P-3(P.#,        .    0     8    (    !          %    \"    "
+    " $    )     0         0    \"0   # N,# Q,#0Q-P         .    X     8    (     @         %    \"     $    !     0   "
+    "      %  0 $@    $    D    8W5R<F5N=$%N86QY<VES    3W9E<FQA>65D06YA;'ES:7,       X   !     !@    @    $          4"
+    "    (     0    D    !         !     )    ;6%G;FET=61E          X    P    !@    @    $          4    (             "
+    "  !         !          #@   !@+   &    \"    !$          0         !    !@   &AA;F1L90   0    L   !D9FEL=\"YD9F9I<"
+    "@      #@   - *   &    \"     $         !0    @    $     0    $         #@   $ !   &    \"     D         !0    @  "
+    "  0 0   0    $          @   ! !   !    !0   &    \"0    J    /     ( 0  $ $             9&9I;'0 9&9F:7( 9FEL=&5R<7"
+    "5A;G1I>F5R &YC;V5F9G, 34%43$%\"(&%R<F%Y                                 0    (       $       $    #               "
+    "           $    %     0    $                                    !               !               \"                "
+    "     0                    $    $     0                    X   !X    !@    @    !          4    (     0    $    !  "
+    "        X   !(    !@    @    -          4    (    !0    $    !          8    4        W0(    !     0    $         "
+    "#@   #@    &    \"     8         !0    @    !     0    $         \"0    @           !00 X   \"8\"   !@    @    \" "
+    "         4    (     0    $    !          4 !  4     0   /    !C;&%S<P                   '9E<G-I;VX                "
+    " 4&5R<VES=&5N=$UE;6]R>0    !.=6U386UP;&5S4')O8V5S<V5D %-T871E<P                  <F5F;G5M                  !F9&5S:"
+    "6=N                 &9M971H;V0                 ;65A<W5R96UE;G1S          !P<FEV9G$                  $%R:71H;65T:6,"
+    "             <')I=FYO<FU'86EN           .    0     8    (    !          %    \"     $    +     0         0    \"P "
+    "  &1F:6QT+F1F9FER       .    T     8    (     @         %    \"     $    !     0         %  0 #     $    8    ;G5M"
+    "8F5R        9&5S8W)I<'1I;VX #@   #@    &    \"     8         !0    @    !     0    $         \"0    @            0"
+    "0 X    X    !@    @    $          4    (     0    8    !         !     &    4C(P,#AB   .    ,     8    (    \"0(  "
+    "      %    \"     $    !     0         \"  $       X    X    !@    @    &          4    (     0    $    !         "
+    " D    (               .    * (   8    (    !@         %    \"    #\\    !     0         )    ^ $                  "
+    "                                                                                                                  "
+    "                                                                                                                  "
+    "                                                                                                                  "
+    "                                                                                                                  "
+    "                                                                                                                  "
+    "                                                                                       X    P @  !@    @    &     "
+    "     4    (     0   $     !          D      @  ]!Q1X*H',+^O!S@'&Q]5OX8U'VW8SVJ_YM5<N!WY=;\\(%_NR0\"MWOU&BA3Z$&V>_:"
+    "E7P29@98#\\(6<Q@VTQT/P#1:&NC2F@_0UU9/U;=9K])T7[>C/9ZOZMO^U,>2FR_DMEV3A0?<S_39'1JXPB#/ZY*F=EA6V\\_SUQY3]S_?[\\D%!8["
+    "ZJR*O^S) =>^F&V_OTFK+]!5BC_#VZ-(Z6:2/Y1!X ^$AV$_VKC92N\"\"E;_XC2<PI4J9OV\"4<J[&FUX_?5VV<V\\'HC\\H,8HA0@\"B/VHQTQ&="
+    "48B_*Q7XJ^'NL+\\HC H9TP2NO^CG9FOW):@_G<5\"W +VRC^\\<]>WG5?5/[QSU[>=5]4_G<5\"W +VRC_HYV9K]R6H/RB,\"AG3!*Z_*Q7XJ^'NL"
+    "+]J,=,1G5&(OR@QBB%\" *(_?5VV<V\\'HC]@E'*NQIM>/_B-)S\"E2IF_VKC92N\"\"E;^40> /A(=A/\\/;HTCI9I(_OTFK+]!5BC_LR0'7OIAMO"
+    "R04%COJK(J_SUQY3]S_?[^N2IG985MO/]-D=&KC\"(,_DMEV3A0?<S^K;_M3'DILOTG1?MZ,]GJ_0UU9/U;=9K\\ T6AKHTIH/PA9S&#;3'0_:E7P2"
+    "9@98#]1HH4^A!MGOP@7^[) *W>_YM5<N!WY=;^&-1]MV,]JOZ\\'. <;'U6_]!Q1X*H',+\\.    ,     8    (    !@         %    \"   "
+    "             0         )          X    P    !@    @    &          4    (               !          D         #@   #"
+    "     &    \"     8         !0    @               $         \"0         .    2     8    (    #0         %    \"    "
+    " 4    !     0         &    %        -T\"     0    $    \"          X    X    !@    @    $          4    (     0   "
+    " 8    !         !     &    9&]U8FQE   .    ,     8    (    !@         %    \"                0         )          "
+    "X    X    !@    @    $          4    (     0    @    !         !     (    1&5S:6=N960.    ,     8    (    !@      "
+    "   %    \"                0         )          X   !(    !@    @    $          4    (     0   !(    !         !   "
+    "  2    3&]W<&%S<R!%<75I<FEP<&QE        #@   #@    &    \"     8         !0    @    !     0    $         \"0    @  "
+    " \":F9F9F9GQ/PX   \"X!P  !@    @    1          $          0    8   !H86YD;&4   $    6    <VEG8V]D96=E;BYM8V]D96)U9"
+    "F9E<@  #@   &@'   &    \"     $         !0    @    %     0    $         #@   \" !   &    \"     D         !0    @ "
+    "  #P     0    $          @   /     !    !0   &    \"     B    +@   #H    \\               <VEG8V]D96=E;@!M8V]D96)U"
+    "9F9E<@!B=69F97( <')I=E=R87  <')I=DUA>%=I9'1H                             0    (                                   "
+    "                       0                    $                    #     P    $         !     $    !    !0    $    \""
+    "               .    >     8    (     0         %    \"     $    !     0         .    2     8    (    #0         % "
+    "   \"     4    !     0         &    %        -T\"     0    $    !          X    8!0  !@    @    !          4    ( "
+    "    0    X    !          X   !P    !@    @    $          4    (     0   #X    !         !     ^    )2!%<75I<FEP<&Q"
+    "E($QO=W!A<W,@9FEL=&5R(&1E<VEG;F5D('5S:6YG('1H92!&25)032!F=6YC=&EO;BX   X    P    !@    @    $          4    (     "
+    "0         !         !          #@   &     &    \"     0         !0    @    !    *P    $         $    \"L    E($%L;"
+    "\"!F<F5Q=65N8WD@=F%L=65S(&%R92!N;W)M86QI>F5D('1O(#$N       .    ,     8    (    !          %    \"     $          "
+    "0         0          X   !(    !@    @    $          4    (     0   !<    !         !     7    3B @(\" @/2 V,SL@(\""
+    " @(\"4@3W)D97( #@   %@    &    \"     0         !0    @    !    )     $         $    \"0   !&<&%S<R ](# N,S([(\" @"
+    ")2!087-S8F%N9\"!&<F5Q=65N8WD     #@   %@    &    \"     0         !0    @    !    )     $         $    \"0   !&<W1"
+    "O<\" ](# N-#$V.R @)2!3=&]P8F%N9\"!&<F5Q=65N8WD     #@   %@    &    \"     0         !0    @    !    (0    $       "
+    "  $    \"$   !7<&%S<R ](# N,3L@(\" @)2!087-S8F%N9\"!796EG:'0         #@   %@    &    \"     0         !0    @    !"
+    "    (0    $         $    \"$   !7<W1O<\" ](#8P.R @(\" @)2!3=&]P8F%N9\"!796EG:'0         #@   %     &    \"     0  "
+    "       !0    @    !    (     $         $    \"    !D96YS(\" ](#$V.R @(\" @)2!$96YS:71Y($9A8W1O<@X    P    !@    @ "
+    "   $          4    (     0         !         !          #@   &@    &    \"     0         !0    @    !    -@    $  "
+    "       $    #8    E($-A;&-U;&%T92!T:&4@8V]E9F9I8VEE;G1S('5S:6YG('1H92!&25)032!F=6YC=&EO;BX   X   !X    !@    @    "
+    "$          4    (     0   $,    !         !    !#    8B @/2!F:7)P;2A.+\"!;,\"!&<&%S<R!&<W1O<\" Q72P@6S$@,2 P(#!=+\""
+    "!;5W!A<W,@5W-T;W!=+\"![9&5N<WTI.P      #@   $@    &    \"     0         !0    @    !    %     $         $    !0   "
+    "!(9\" ](&1F:6QT+F1F9FER*&(I.P     .    ,     8    (    !          %    \"     $    \"     0         0  ( ;VX   X  "
+    "  X    !@    @    &          4    (     0    $    !          D    (          # 4D .    .     8    (    !@         "
+    "%    \"     $    !     0         )    \"         #< 4Q #@   (@    &    \"     D         !0    @    !    6     $   "
+    "       @   %@      4E-      X   !(    !@    @    \"          4    (     0    $    !          4 !  '     0    <   !"
+    "H86YD;&4   X         "
+  }
+  DataRecord {
+    Tag			    DataTag1
+    Data		    "  %)30     .    Z#\\   8    (     @         %    \"     $    !     0         %  0 #0    $   !U    <VED9"
+    "6)A<@       &9V=&]O;         !C=7)R96YT7V9I;'0 9FEL=&5R36%D94)Y &-U<G)E;G1&<P    !C=7)R96YT3F%M90  =F5R<VEO;@     "
+    "  &UC;V1E          !H1FEG                #@   (@J   &    \"     (         !0    @    !     0    $         !0 $  T "
+    "   !    00   &-U<G)E;G1P86YE; !D97-I9VX         :6UP;W)T         &1S<&9W:7H       !X9F]R;0                    X   "
+    " X    !@    @    $          4    (     0    8    !         !     &    9&5S:6=N   .    \"!(   8    (     @         "
+    "%    \"     $    !     0         %  0 $P    $   \"^    5&%G                     %9E<G-I;VX               !I<T1E<VE"
+    "G;F5D            4F5S<&]N<V54>7!E         %-U8E1Y<&4               !$97-I9VY-971H;V0         0W5R<F5N=$9S         "
+    "    %)E<W!O;G-E5'EP94-32%1A9P!3=&%T:6-297-P;VYS90      0V]M<&]N96YT<P              #@   $@    &    \"     0       "
+    "  !0    @    !    $@    $         $    !(   !S:6=G=6DN9&5S:6=N<&%N96P        .    .     8    (    !@         %    "
+    "\"     $    !     0         )    \"            / _#@   #     &    \"     D\"        !0    @    !     0    $       "
+    "   @ !  $    .    ,     8    (    !          %    \"     $    \"     0         0  ( ;'    X   !     !@    @    $  "
+    "        4    (     0    D    !         !     )    :6YV<VEN8VQP          X   !(    !@    @    $          4    (    "
+    " 0   !$    !         !     1    9FEL=&1E<RYF:7)C97%R:7          #@   ,     &    \"     (         !0    @    !     "
+    "0    $         !0 $  8    !    #    '9A;'5E '5N:71S       .    .     8    (    !@         %    \"     $    !     0"
+    "         )    \"           <.= #@   #     &    \"     0         !0    @    !     @    $         $  \" $AZ   .    6"
+    "     8    (    !          %    \"     $    F     0         0    )@   &9D871O;VQ?9FEL=&5R7W1Y<&5?9G)A;65<9FEL=&5R9&"
+    "5S:6=N   .    ,     8    (    !          %    \"     $    #     0         0  , ;V9F  X    0#@  !@    @    !       "
+    "   4    (     0    <    !          X   \"H 0  !@    @    \"          4    (     0    $    !          4 !  )     0 "
+    "  \"T   !486<       !697)S:6]N  !I<TUI;D]R9 !O<F1E<@    !M;V1E           .    2     8    (    !          %    \"  "
+    "   $    2     0         0    $@   '-I9V=U:2YF:6QT97)O<F1E<@        X    X    !@    @    &          4    (     0   "
+    " $    !          D    (            \\#\\.    ,     8    (    \"0(        %    \"     $    !     0         \"  $   "
+    "    X    P    !@    @    $          4    (     0    (    !         !   @ R,   #@   #@    &    \"     0         !0 "
+    "   @    !    !P    $         $     <   !S<&5C:69Y  X    P 0  !@    @    \"          4    (     0    $    !        "
+    "  4 !  .     0   \"H   !486<              %9E<G-I;VX         1&5N<VET>49A8W1O<@         .    2     8    (    !    "
+    "      %    \"     $    8     0         0    &    '-I9V=U:2YR96UE>F]P=&EO;G-F<F%M90X    X    !@    @    &          "
+    "4    (     0    $    !          D    (            \\#\\.    ,     8    (    !          %    \"     $    \"     0  "
+    "       0  ( ,38   X    H @  !@    @    \"          4    (     0    $    !          4 !  *     0   #P   !486<      "
+    "   5F5R<VEO;@   &9R97%5;FET<P!&<P          1G!A<W,      $9S=&]P            #@   %     &    \"     0         !0    "
+    "@    !    '0    $         $    !T   !F9&%D97-I9VYP86YE;\"YL<&9R97%P87-S<W1O<     X    X    !@    @    &          4"
+    "    (     0    $    !          D    (            \\#\\.    2     8    (    !          %    \"     $    3     0    "
+    "     0    $P   $YO<FUA;&EZ960@*# @=&\\@,2D       X    P    !@    @    $          4    (               !         ! "
+    "         #@   $     &    \"     0         !0    @    !    #@    $         $     X   !M9FER7W!A<W-?961G90  #@   $  "
+    "   &    \"     0         !0    @    !    #P    $         $     \\   !M9FER7W-T;W!B7W-T<G0 #@   /@\"   &    \"     "
+    "(         !0    @    !     0    $         !0 $  D    !    6@   %1A9P       %9E<G-I;VX  $E25'EP90   &UA9U5N:71S $%P"
+    "87-S     $%S=&]P     $1P87-S     $1S=&]P     $5P87-S     $5S=&]P              X   !(    !@    @    $          4   "
+    " (     0   !0    !         !     4    9F1A9&5S:6=N<&%N96PN;'!M86<     #@   #@    &    \"     8         !0    @    "
+    "!     0    $         \"0    @           #P/PX    P    !@    @    $          4    (     0    ,    !         !   P!&"
+    "25( #@   #     &    \"     0         !0    @    !     @    $         $  \" &1\"   .    ,     8    (    !          "
+    "%    \"     $    \"     0         0  ( +C$   X    P    !@    @    $          4    (     0    (    !         !   @ "
+    "V,   #@   #     &    \"     0         !0    @    !     P    $         $  # # N,0 .    .     8    (    !          %"
+    "    \"     $    %     0         0    !0   # N,# Q    #@   #     &    \"     0         !0    @    !     P    $     "
+    "    $  # # N,0 .    .     8    (    !          %    \"     $    %     0         0    !0   # N,# Q    #@   %@!   & "
+    "   \"     (         !0    @    !     0    $         !0 $  @    !    (    %1A9P      5F5R<VEO;@!7<&%S<P   %=S=&]P  "
+    "  #@   $@    &    \"     0         !0    @    !    %P    $         $    !<   !F9&%D97-I9VYP86YE;\"YL<'=E:6=H=  .  "
+    "  .     8    (    !@         %    \"     $    !     0         )    \"            / _#@   #     &    \"     0      "
+    "   !0    @    !     P    $         $  # # N,0 .    ,     8    (    !          %    \"     $    \"     0         0 "
+    " ( -C    X   !  @  !@    @    \"          4    (     0    $    !          4 !  -     0   $X   !486<             5F"
+    "5R<VEO;@       &9R97%5;FET<P    !&<P              9G)E<5-P96-4>7!E $9P87-S              X   !0    !@    @    $    "
+    "      4    (     0   !P    !         !     <    9F1A9&5S:6=N<&%N96PN9G)E<69I<F-E<7)I<      .    .     8    (    !@"
+    "         %    \"     $    !     0         )    \"            / _#@   $@    &    \"     0         !0    @    !    $"
+    "P    $         $    !,   !.;W)M86QI>F5D(\"@P('1O(#$I       .    .     8    (    !          %    \"     $    %     "
+    "0         0    !0   %-2+S8T    #@   #@    &    \"     0         !0    @    !    \"     $         $     @   !P87-S9"
+    "61G90X   !(    !@    @    $          4    (     0   !(    !         !     2    8V9I<E]P87-S8F%N9%]E9&=E        #@ "
+    "  \" \"   &    \"     (         !0    @    !     0    $         !0 $ !(    !    ;    %1A9P                   %9E<G"
+    "-I;VX              &ES36EN4&AA<V4          %-T;W!B86YD4VQO<&4      &EN=E-I;F-&<F5Q1F%C=&]R &EN=E-I;F-0;W=E<@      "
+    "       .    4     8    (    !          %    \"     $    @     0         0    (    '-I9V=U:2YF:7)C97%R:7!I;G9S:6YC;"
+    "W!T<V9R86UE#@   #@    &    \"     8         !0    @    !     0    $         \"0    @           #P/PX    P    !@   "
+    " @    $          4    (     0    ,    !         !   P!O9F8 #@   #     &    \"     0         !0    @    !     @    "
+    "$         $  \" #8P   .    ,     8    (    !          %    \"     $    \"     0         0  ( +C4   X    P    !@   "
+    " @    $          4    (     0    $    !         !   0 V    #@   % )   &    \"     (         !0    @    !     0    "
+    "$         !0 $  \\    !    /    %1A9P               %9E<G-I;VX          &-O969F<W!E8VEF:65R &9S<W!E8VEF:65R       "
+    "    .    0     8    (    !          %    \"     $    -     0         0    #0   '-I9V=U:2YI;7!O<G0    .    .     8 "
+    "   (    !@         %    \"     $    !     0         )    \"            / _#@   - &   &    \"     (         !0    @"
+    "    !     0    $         !0 $ !(    !    6@   %1A9P                   %9E<G-I;VX              $-O969F:6-I96YT<P   "
+    "    %-E;&5C=&5D4W1R=6-T=7)E %-/4P                            X   !(    !@    @    $          4    (     0   !0    "
+    "!         !     4    8V]E9F9I8VEE;G1S<&5C:69I97(     #@   #@    &    \"     8         !0    @    !     0    $     "
+    "    \"0    @           #P/PX    0!0  !@    @    \"          4    (     0    $    !          4 !  /     0   '@   !T"
+    "9@                !F:7(               !S;W,               !L871T:6-E87)M80    !L871T:6-E86QL<&%S<P!L871T:6-E;6%M:6"
+    "X   !L871T:6-E;6%M87@   !B87-E9FEL=&5R       .    Z     8    (     0         %    \"     $    \"     0         .  "
+    "  6     8    (    !          %    \"     $    A     0         0    (0   %LP+C R.\" @,\"XP-3,@,\"XP-S$@(# N,#4S(# N"
+    ",#(X70         .    6     8    (    !          %    \"     $    A     0         0    (0   %LQ+C P,\" M,BXP,C8@,BXQ"
+    "-#@@+3$N,34Y(# N,C<Y70         .    B     8    (     0         %    \"     $    !     0         .    6     8    ( "
+    "   !          %    \"     $    H     0         0    *    %LM,\"XP,#@@(# N,#8T(# N-#0S(# N-#0S(# N,#8T(\"TP+C P.%T."
+    "    F     8    (     0         %    \"     $    \"     0         .    ,     8    (    !          %    \"     $    "
+    "#     0         0  , 4T]3  X    P    !@    @    $          4    (     0    $    !         !   0 Q    #@   )@    & "
+    "   \"     $         !0    @    !     @    $         #@   #     &    \"     0         !0    @    !     0    $      "
+    "   $  ! $L    .    ,     8    (    !          %    \"     $    !     0         0  $ 5@    X   !@    !@    @    !  "
+    "        4    (     0    $    !          X    P    !@    @    $          4    (     0    $    !         !   0!+    "
+    "#@   &     &    \"     $         !0    @    !     0    $         #@   #     &    \"     0         !0    @    !    "
+    " 0    $         $  ! $L    .    8     8    (     0         %    \"     $    !     0         .    ,     8    (    !"
+    "          %    \"     $    !     0         0  $ 2P    X   !@    !@    @    !          4    (     0    $    !      "
+    "    X    P    !@    @    $          4    (     0    (    !         !   @!(9   #@   %     &    \"     0         !0 "
+    "   @    !    &0    $         $    !D   !$:7)E8W0M1F]R;2!)22!4<F%N<W!O<V5D          X    P    !@    @    $         "
+    " 4    (     0    ,    !         !   P!O9F8 #@   ' !   &    \"     (         !0    @    !     0    $         !0 $  "
+    "@    !    (    %1A9P      5F5R<VEO;@!5;FET<P   %9A;'5E    #@   $@    &    \"     0         !0    @    !    $@    $"
+    "         $    !(   !S:6=G=6DN9G-S<&5C:69I97(        .    .     8    (    !@         %    \"     $    !     0      "
+    "   )    \"            / _#@   $@    &    \"     0         !0    @    !    $P    $         $    !,   !.;W)M86QI>F5D"
+    "(\"@P('1O(#$I       .    ,     8    (    !          %    \"     $    \"     0         0  ( 1G,   X   \" #   !@    "
+    "@    \"          4    (     0    $    !          4 !  4     0    0!  !486<                      %9E<G-I;VX        "
+    "         1FEL=&5R                  !5<V5\"87-I8T5L96UE;G1S     $1E<W1I;F%T:6]N            57-E<D1E9FEN960         "
+    "  !\";&]C:TYA;64              $]V97)W<FET94)L;V-K        3W!T:6UI>F5:97)O<P        !/<'1I;6EZ94]N97,          $]P="
+    "&EM:7IE3F5G3VYE<P      3W!T:6UI>F5$96QA>4-H86EN<P!/<'1I;6EZ95-C86QE5F%L=65S       .    0     8    (    !          "
+    "%    \"     $    .     0         0    #@   '-I9V=U:2YD<W!F=VEZ   .    .     8    (    !@         %    \"     $    "
+    "!     0         )    \"            / _#@   &@(   &    \"    !$          0         !    !@   &AA;F1L90   0    L   !"
+    "D9FEL=\"YD9F9I<@      #@   \" (   &    \"     $         !0    @    $     0    $         #@   $ !   &    \"     D  "
+    "       !0    @    0 0   0    $          @   ! !   !    !0   &    \"0    J    /     ( 0  $ $             9&9I;'0 9&"
+    "9F:7( 9FEL=&5R<75A;G1I>F5R &YC;V5F9G, 34%43$%\"(&%R<F%Y                                 0    (       $       $    "
+    "#                          $    %     0    $                                    !               !               \""
+    "                     0                    $    $     0                    X   !X    !@    @    !          4    (  "
+    "   0    $    !          X   !(    !@    @    -          4    (    !0    $    !          8    4        W0(    !    "
+    " 0    $         #@   #@    &    \"     8         !0    @    !     0    $         \"0    @            U0 X   #H!0  "
+    "!@    @    \"          4    (     0    $    !          4 !  4     0   /    !C;&%S<P                   '9E<G-I;VX  "
+    "               4&5R<VES=&5N=$UE;6]R>0    !.=6U386UP;&5S4')O8V5S<V5D %-T871E<P                  <F5F;G5M           "
+    "       !F9&5S:6=N                 &9M971H;V0                 ;65A<W5R96UE;G1S          !P<FEV9G$                  "
+    "$%R:71H;65T:6,             <')I=FYO<FU'86EN           .    0     8    (    !          %    \"     $    +     0    "
+    "     0    \"P   &1F:6QT+F1F9FER       .    T     8    (     @         %    \"     $    !     0         %  0 #     "
+    "$    8    ;G5M8F5R        9&5S8W)I<'1I;VX #@   #@    &    \"     8         !0    @    !     0    $         \"0    "
+    "@            00 X    X    !@    @    $          4    (     0    8    !         !     &    4C(P,#AB   .    ,     8 "
+    "   (    \"0(        %    \"     $    !     0         \"  $       X    X    !@    @    &          4    (     0    $"
+    "    !          D    (               .    T     8    (    !@         %    \"    !0    !     0         )    H       "
+    "                                                                                                                  "
+    "                                                                                                 .    V     8    ("
+    "    !@         %    \"     $    5     0         )    J    $\"/LF:JUF8_]R\"_+5+[?3^;*_\\DE_ILOTAIRF7HMIF_EI9\"C4WF3"
+    "S^4^2)XE!\"P/W9?8\\$I)X4_5@N^B$)2PK_E[OW>?)>POZG+%?<\\3-8_.#P;\"])\\XS^IRQ7W/$S6/^7N_=Y\\E[\"_5@N^B$)2PK]V7V/!*2>%"
+    "/Y3Y(GB4$+ _EI9\"C4WF3S](:<IEZ+:9OYLK_R27^FR_]R\"_+5+[?3] C[)FJM9F/PX    P    !@    @    &          4    (        "
+    "       !          D         #@   #     &    \"     8         !0    @               $         \"0         .    ,   "
+    "  8    (    !@         %    \"                0         )          X   !(    !@    @    -          4    (    !0   "
+    " $    !          8    4        W0(    !     0    (         #@   #@    &    \"     0         !0    @    !    !@    "
+    "$         $     8   !D;W5B;&4   X    P    !@    @    &          4    (               !          D         #@   #  "
+    "   &    \"     0         !0    @    !     P    $         $  # &]F9@ .    .     8    (    !          %    \"     $ "
+    "   '     0         0    !P   $-U<G)E;G0 #@   #@    &    \"     0         !0    @    !    \"     $         $     @ "
+    "  !5;G1I=&QE9 X    X    !@    @    $          4    (     0    8    !         !     &    1FEL=&5R   .    ,     8   "
+    " (    !          %    \"     $    #     0         0  , ;V9F  X    P    !@    @    $          4    (     0    ,    "
+    "!         !   P!O9F8 #@   #     &    \"     0         !0    @    !     P    $         $  # &]F9@ .    ,     8    ("
+    "    !          %    \"     $    #     0         0  , ;V9F  X    P    !@    @    $          4    (     0    ,    ! "
+    "        !   P!O9F8 #@   #     &    \"     0         !0    @    !     P    $         $  # &]F9@ .    T $   8    (  "
+    "   @         %    \"     $    !     0         %  0 $     $   !     4V]U<F-E5'EP90       %1A<F=E=%1Y<&4       !3;W5"
+    "R8V5&<F5Q=65N8WD 5&%R9V5T1G)E<75E;F-Y  X    X    !@    @    $          4    (     0    <    !         !     '    3"
+    "&]W<&%S<P .    .     8    (    !          %    \"     $    '     0         0    !P   $QO=W!A<W, #@   #     &    \""
+    "     0         !0    @    !     @    $         $  \" \"XT   .    F     8    (     0         %    \"     (    !    "
+    " 0         .    ,     8    (    !          %    \"     $    \"     0         0  ( +C,   X    P    !@    @    $    "
+    "      4    (     0    (    !         !   @ N-@  #@   .     &    \"     (         !0    @    !     0    $         !"
+    "0 $ !(    !    )    &-U<G)E;G1!;F%L>7-I<P   $]V97)L87EE9$%N86QY<VES       .    0     8    (    !          %    \" "
+    "    $    )     0         0    \"0   &UA9VYI='5D90         .    ,     8    (    !          %    \"                0"
+    "         0          X   !H\"   !@    @    1          $          0    8   !H86YD;&4   $    +    9&9I;'0N9&9F:7(    "
+    "   X    @\"   !@    @    !          4    (    !     $    !          X   !  0  !@    @    )          4    (    $ $ "
+    "  $    !          (    0 0   0    4   !@    D    *@   #P    \" $  ! !             &1F:6QT &1F9FER &9I;'1E<G%U86YT:"
+    "7IE<@!N8V]E9F9S $U!5$Q!0B!A<G)A>0                                $    \"       !       !     P                    "
+    "     !    !0    $    !                                     0               0               @                    $ "
+    "                   !    !     $                    .    >     8    (     0         %    \"     $    !     0       "
+    "  .    2     8    (    #0         %    \"     4    !     0         &    %        -T\"     0    $    !          X  "
+    "  X    !@    @    &          4    (     0    $    !          D    (            -4 .    Z 4   8    (     @         "
+    "%    \"     $    !     0         %  0 %     $   #P    8VQA<W,                   !V97)S:6]N                 %!E<G-I"
+    "<W1E;G1-96UO<GD     3G5M4V%M<&QE<U!R;V-E<W-E9 !3=&%T97,                  ')E9FYU;0                  9F1E<VEG;@    "
+    "            !F;65T:&]D                 &UE87-U<F5M96YT<P          <')I=F9Q                  !!<FET:&UE=&EC        "
+    "     '!R:79N;W)M1V%I;@          #@   $     &    \"     0         !0    @    !    \"P    $         $     L   !D9FEL"
+    "=\"YD9F9I<@      #@   -     &    \"     (         !0    @    !     0    $         !0 $  P    !    &    &YU;6)E<@  "
+    "     &1E<V-R:7!T:6]N  X    X    !@    @    &          4    (     0    $    !          D    (            $$ .    . "
+    "    8    (    !          %    \"     $    &     0         0    !@   %(R,# X8@  #@   #     &    \"     D\"        !"
+    "0    @    !     0    $          @ !       .    .     8    (    !@         %    \"     $    !     0         )    \""
+    "               #@   -     &    \"     8         !0    @    4     0    $         \"0   *                           "
+    "                                                                                                                  "
+    "                                                                             #@   -@    &    \"     8         !0  "
+    "  @    !    %0    $         \"0   *@   ! C[)FJM9F/_<@ORU2^WT_FRO_))?Z;+](:<IEZ+:9OY:60HU-YD\\_E/DB>)00L#]V7V/!*2>%"
+    "/U8+OHA\"4L*_Y>[]WGR7L+^IRQ7W/$S6/S@\\&PO2?.,_J<L5]SQ,UC_E[OW>?)>POU8+OHA\"4L*_=E]CP2DGA3^4^2)XE!\"P/Y:60HU-YD\\_2"
+    "&G*9>BVF;^;*_\\DE_ILO_<@ORU2^WT_0(^R9JK69C\\.    ,     8    (    !@         %    \"                0         )    "
+    "      X    P    !@    @    &          4    (               !          D         #@   #     &    \"     8         !"
+    "0    @               $         \"0         .    2     8    (    #0         %    \"     4    !     0         &    %"
+    "        -T\"     0    $    \"          X    X    !@    @    $          4    (     0    8    !         !     &    9"
+    "&]U8FQE   .    ,     8    (    !@         %    \"                0         )          X    X    !@    @    $      "
+    "    4    (     0    @    !         !     (    1&5S:6=N960.    ,     8    (    !@         %    \"                0 "
+    "        )          X   !@    !@    @    $          4    (     0   \"\\    !         !     O    26YV97)S92!3:6YC($Q"
+    "O=W!A<W,@1DE2(&-O;G-T<F%I;F5D(&5Q=6ER:7!P;&4 #@   #@    &    \"     8         !0    @    !     0    $         \"0 "
+    "   @   \":F9F9F9GQ/PX   #H\"0  !@    @    1          $          0    8   !H86YD;&4   $    6    <VEG8V]D96=E;BYM8V]"
+    "D96)U9F9E<@  #@   )@)   &    \"     $         !0    @    %     0    $         #@   \" !   &    \"     D         !0"
+    "    @   #P     0    $          @   /     !    !0   &    \"     B    +@   #H    \\               <VEG8V]D96=E;@!M8V"
+    "]D96)U9F9E<@!B=69F97( <')I=E=R87  <')I=DUA>%=I9'1H                             0    (                             "
+    "                             0                    $                    #     P    $         !     $    !    !0    "
+    "$    \"               .    >     8    (     0         %    \"     $    !     0         .    2     8    (    #0    "
+    "     %    \"     4    !     0         &    %        -T\"     0    $    !          X   !(!P  !@    @    !          "
+    "4    (     0   !(    !          X   !X    !@    @    $          4    (     0   $<    !         !    !'    )2!&25(@"
+    "8V]N<W1R86EN960@97%U:7)I<'!L92!);G9E<G-E(%-I;F,@3&]W<&%S<R!F:6QT97(@9&5S:6=N960@=7-I;F< #@   %     &    \"     0  "
+    "       !0    @    !    &0    $         $    !D    E('1H92!&25)#15%225 @9G5N8W1I;VXN          X    P    !@    @    "
+    "$          4    (     0         !         !          #@   &     &    \"     0         !0    @    !    *P    $     "
+    "    $    \"L    E($%L;\"!F<F5Q=65N8WD@=F%L=65S(&%R92!N;W)M86QI>F5D('1O(#$N       .    ,     8    (    !          %"
+    "    \"     $          0         0          X   !8    !@    @    $          4    (     0   \"@    !         !     H"
+    "    3B @(\" @(\" @(\" @(#T@,C [(\" @(\" @(\" @(\" @(\" @)2!/<F1E<@X   !H    !@    @    $          4    (     0   #"
+    "4    !         !     U    1G!A<W,@(\" @(\" @(#T@,\"XS-3([(\" @(\" @(\" @(\" @)2!087-S8F%N9\"!&<F5Q=65N8WD    .    "
+    ":     8    (    !          %    \"     $    Q     0         0    ,0   '-L;W!E(\" @(\" @(\" ](#8P.R @(\" @(\" @(\" "
+    "@(\" @(\"4@4W1O<&)A;F0@4VQO<&4         #@   '     &    \"     0         !0    @    !    /P    $         $    #\\  "
+    " !S<&5C='EP92 @(\" @/2 G<&%S<V5D9V4G.R @(\" @(\" E($9R97%U96YC>2!3<&5C:69I8V%T:6]N(%1Y<&4 #@   '     &    \"     0"
+    "         !0    @    !    0     $         $    $    !I<VEN8V9F86-T;W(@/2 P+C4[(\" @(\" @(\" @(\" @(\" E($EN=F5R<V4@"
+    "4VEN8R!&<F5Q=65N8WD@1F%C=&]R#@   &@    &    \"     0         !0    @    !    -0    $         $    #4   !I<VEN8W!O="
+    "V5R(\" @/2 V.R @(\" @(\" @(\" @(\" @(\" E($EN=F5R<V4@4VEN8R!0;W=E<@    X   !H    !@    @    $          4    (     "
+    "0   #<    !         !     W    1'-T;W @(\" @(\" @(#T@,\"XP,#$[(\" @(\" @(\" @(\" @)2!3=&]P8F%N9\"!!='1E;G5A=&EO;@ "
+    ".    :     8    (    !          %    \"     $    R     0         0    ,@   $1P87-S(\" @(\" @(\" ](# N,# U-S4V,SDY,"
+    "30Y-CL@(\"4@4&%S<V)A;F0@4FEP<&QE        #@   #     &    \"     0         !0    @    !          $         $        "
+    "  .    <     8    (    !          %    \"     $    Z     0         0    .@   \"4@0V%L8W5L871E('1H92!C;V5F9FEC:65N="
+    "',@=7-I;F<@=&AE($9)4D-%45))4\"!F=6YC=&EO;BX        .    >     8    (    !          %    \"     $   !&     0       "
+    "  0    1@   &(@(#T@9FER8V5Q<FEP*$XL($9P87-S+\"!;1'!A<W,L($1S=&]P72P@)W-L;W!E)RP@<VQO<&4L('-P96-T>7!E+\" N+BX   X  "
+    " !H    !@    @    $          4    (     0   #4    !         !     U    (\" @(\" @(\" @(\" @(\" @)VEN=G-I;F,G+\"!;:"
+    "7-I;F-F9F%C=&]R(&ES:6YC<&]W97)=*3L    .    2     8    (    !          %    \"     $    4     0         0    %    $"
+    "AD(#T@9&9I;'0N9&9F:7(H8BD[      X    P    !@    @    $          4    (     0    (    !         !   @!O;@  #@   #@ "
+    "   &    \"     8         !0    @    !     0    $         \"0    @          ,!20 X    X    !@    @    &          4 "
+    "   (     0    $    !          D    (         -P!3$ .    B     8    (    \"0         %    \"     $   !8     0      "
+    "   \"    6      !24T     #@   $@    &    \"     (         !0    @    !     0    $         !0 $  <    !    !P   &AA"
+    ";F1L90  #@         "
+  }
+  DataRecord {
+    Tag			    DataTag0
+    Data		    "  %)30     .    > $   8    (     @         %    \"     $    \"     0         %  0 !@    $    ,    3F%M9"
+    "0  5F%L=64       X   !(    !@    @    $          4    (     0   !(    !         !     2    <WEN1'-P5&]O;$9I;&5.86U"
+    "E        #@   %     &    \"     0         !0    @    !    &0    $         $    !D   !C.EQD96UO7&1D8S,Q7&=S;5]D9&,N"
+    ";61L          X   !     !@    @    $          4    (     0   !     !         !     0    <WEN1'-P5&]O;$AA;F1L90X   "
+    " X    !@    @    &          4    (     0    $    !          D    (          :\\I$ "
+  }
+}

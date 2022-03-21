@@ -1,0 +1,95 @@
+
+----- Date             : Thu Nov 27 12:35:28 1997
+----- Module Name      : DBUF
+----- Library Name     : X3000
+----- Output Directory : .
+----- Operating Voltage: 5.000000
+----- Operating Temp   : 25
+----- Process          : TYPICAL
+----- Logic Type       : LARGE
+----- area/speed Factor: 1.000000
+----- Package          : DEFAULT
+
+             *********************************************
+                             Output Drives
+             *********************************************
+
+
+   Output            Drive              Output             Drive
+----------------------------------------------------------------------------
+                    rise     fall                         rise     fall
+                   ----------------                      ----------------
+DOUT               0.0000   0.0000    
+
+
+             *********************************************
+                             Input Loadings
+             *********************************************
+
+
+       Input             Load        Input             Load
+-------------------------------------------------------------------
+      CLK                18.000     ERR                1.000  
+      VDOUT              1.000      DIN                1.000  
+
+
+
+             *********************************************
+                             Timing Report
+             *********************************************
+
+
+   Output          Delay            Required       Required Load   External Cap
+-----------------------------------------------------------------------------
+                  rise     fall      rise     fall      (Buffering)  (Timing)
+                ----------------   --------------    ------------  ----------
+DIN__DOUT         2.00     2.00     <none>   <none>         1.0       1.0
+DOUT              1.00     1.00     <none>   <none>         1.0       1.0
+----------------------------------------------------------------------------
+Total Delta          0.00      0.00
+Max.  Delay          2.00      2.00
+Min.  Delay          1.00      1.00
+
+               ****************************************
+                       Critical Path Delays
+               ****************************************
+
+
+ Node             Arrival      Required     Slack        Type
+ -----------------------------------------------------------------------
+DIN__DOUT          2.00            -           -          X3000:AND2:2
+N_3                1.00            -           -          X3000:XOR2:1
+BUF_16_$Q   R/B/LC Output
+
+DIN__DOUT          2.00            -           -          X3000:AND2:2
+N_3                1.00            -           -          X3000:XOR2:1
+BUF_16_$Q   R/B/LC Output
+
+
+ R/B/LC => Register/BlackBox/LibraryComponent 
+
+
+
+             *********************************************
+                          Gate Usage Summary
+             *********************************************
+
+
+Cell         Count       Area/Cell    Cell         Count       Area/Cell
+----------------------------------------------------------------------------
+MX3000:FD      18           0.00      X3000:AND2      1           0.25
+X3000:XOR2      1           0.25      
+----------------------------------------------------------------------------
+
+Total Cells :          20             Total Area  :        0.50
+
+
+             *********************************************
+                           Netlist Statistics
+             *********************************************
+
+Maximum level of gates =       2    Total number of nets   =      24
+Maximum pins per net   =      19    Average pins per net   =    2.71
+Maximum load per net   =   18.00    Average load per net   =    1.71
+
+

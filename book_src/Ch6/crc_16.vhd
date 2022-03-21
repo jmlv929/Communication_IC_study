@@ -1,0 +1,39 @@
+sh_signal  ={a0, a1, a2, a3, a4, a5, a6, a7}
+sh_service ={b0, b1, b2, b3, b4, b5, b6, b7}
+sh_lengthl ={c0, c1, c2, c3, c4, c5, c6, c7}
+sh_lengthH ={d0, d1, d2, d3, d4, d5, d6, d7}
+
+out[f] = (d3 xor b3) xor (c4 xor a4) xor (c0 xor a0);
+out[e] = (d4 xor b4) xor (c5 xor a5) xor (c1 xor a1);
+out[d] = (d5 xor b5) xor (c6 xor a6) xor (c2 xor a2);
+out[c] = (d6 xor b6) xor (c7 xor a7) xor (c3 xor a3);
+out[b] = (d7 xor b7) xor (d0 xor b0) xor (c4 xor a4);
+out[a] = (d1 xor b1) xor (c5 xor a5) xor (c0 xor a0);
+out[9] = (d2 xor b2) xor (c6 xor a6) xor (c1 xor a1);
+out[8] = (d3 xor b3) xor (c7 xor a7) xor (c2 xor a2);
+out[7] = (d4 xor b4) xor (d0 xor b0) xor (c3 xor a3);
+out[6] = (d5 xor b5) xor (d1 xor b1) xor (c4 xor a4);
+out[5] = (d6 xor b6) xor (d2 xor b2) xor (c5 xor a5);
+out[4] = (d7 xor b7) xor (d3 xor b3) xor (c6 xor a6);
+out[3] = (d4 xor b4) xor (c7 xor a7) xor (c0 xor a0);
+out[2] = (d5 xor b5) xor (d0 xor b0) xor (c1 xor a1);
+out[1] = (d6 xor b6) xor (d1 xor b1) xor (c2 xor a2);
+out[0] = (d7 xor b7) xor (d2 xor b2) xor (c3 xor a3);
+
+out[f] = I3 xor Q4 xor Q0;
+out[e] = I4 xor Q5 xor Q1;
+out[d] = I5 xor Q6 xor Q2;
+out[c] = I6 xor Q7 xor Q3;
+out[b] = I7 xor I0 xor Q4;
+out[a] = I1 xor Q5 xor Q0;
+out[9] = I2 xor Q6 xor Q1;
+out[8] = I3 xor Q7 xor Q2;
+out[7] = I4 xor I0 xor Q3;
+out[6] = I5 xor I1 xor Q4;
+out[5] = I6 xor I2 xor Q5;
+out[4] = I7 xor I3 xor Q6;
+out[3] = I4 xor Q7 xor Q0;
+out[2] = I5 xor I0 xor Q1;
+out[1] = I6 xor I1 xor Q2;
+out[0] = I7 xor I2 xor Q3;
+

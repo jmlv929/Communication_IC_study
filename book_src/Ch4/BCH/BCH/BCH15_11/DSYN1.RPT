@@ -1,0 +1,106 @@
+
+----- Date             : Thu Nov 27 12:35:02 1997
+----- Module Name      : DSYN1
+----- Library Name     : X3000
+----- Output Directory : .
+----- Operating Voltage: 5.000000
+----- Operating Temp   : 25
+----- Process          : TYPICAL
+----- Logic Type       : LARGE
+----- area/speed Factor: 1.000000
+----- Package          : DEFAULT
+
+             *********************************************
+                             Output Drives
+             *********************************************
+
+
+   Output            Drive              Output             Drive
+----------------------------------------------------------------------------
+                    rise     fall                         rise     fall
+                   ----------------                      ----------------
+DOUT1[0]           0.0000   0.0000    DOUT1[1]           0.0000   0.0000 
+DOUT1[2]           0.0000   0.0000    DOUT1[3]           0.0000   0.0000 
+
+
+             *********************************************
+                             Input Loadings
+             *********************************************
+
+
+       Input             Load        Input             Load
+-------------------------------------------------------------------
+      CLK                4.000      PE                 2.000  
+      DIN                2.000      
+
+
+             *********************************************
+                             Timing Report
+             *********************************************
+
+
+   Output          Delay            Required       Required Load   External Cap
+-----------------------------------------------------------------------------
+                  rise     fall      rise     fall      (Buffering)  (Timing)
+                ----------------   --------------    ------------  ----------
+DIN__SYN__[0]     4.00     4.00     <none>   <none>         1.0       1.0
+DIN__SYN__[1]     2.00     2.00     <none>   <none>         1.0       1.0
+DIN__SYN__[2]     2.00     2.00     <none>   <none>         1.0       1.0
+DIN__SYN__[3]     2.00     2.00     <none>   <none>         1.0       1.0
+DOUT1[0]          1.00     1.00     <none>   <none>         2.0       2.0
+DOUT1[1]          1.00     1.00     <none>   <none>         2.0       2.0
+DOUT1[2]          1.00     1.00     <none>   <none>         2.0       2.0
+DOUT1[3]          1.00     1.00     <none>   <none>         3.0       3.0
+----------------------------------------------------------------------------
+Total Delta          0.00      0.00
+Max.  Delay          4.00      4.00
+Min.  Delay          1.00      1.00
+
+               ****************************************
+                       Critical Path Delays
+               ****************************************
+
+
+ Node             Arrival      Required     Slack        Type
+ -----------------------------------------------------------------------
+DIN__SYN__[0]      4.00            -           -          X3000:NAND2:1
+NET_$7             3.00            -           -          X3000:OR2:2
+SGEN_NODE_4        2.00            -           -          X3000:OR2:1
+NET_$2             1.00            -           -          X3000:INV:I
+SYN_8_$Q   R/B/LC Output
+
+DIN__SYN__[0]      4.00            -           -          X3000:NAND2:1
+NET_$7             3.00            -           -          X3000:OR2:2
+SGEN_NODE_4        2.00            -           -          X3000:OR2:1
+NET_$2             1.00            -           -          X3000:INV:I
+SYN_8_$Q   R/B/LC Output
+
+
+ R/B/LC => Register/BlackBox/LibraryComponent 
+
+
+
+             *********************************************
+                          Gate Usage Summary
+             *********************************************
+
+
+Cell         Count       Area/Cell    Cell         Count       Area/Cell
+----------------------------------------------------------------------------
+MX3000:FD       4           0.00      X3000:AND2      3           0.25
+X3000:INV       2           0.00      X3000:NAND2     2           0.25
+X3000:OR2       2           0.25      X3000:XOR2      1           0.25
+----------------------------------------------------------------------------
+
+Total Cells :          14             Total Area  :        2.00
+
+
+             *********************************************
+                           Netlist Statistics
+             *********************************************
+
+Maximum level of gates =       4    Total number of nets   =      17
+Maximum pins per net   =       5    Average pins per net   =    2.76
+Maximum load per net   =    4.00    Average load per net   =    1.76
+
+

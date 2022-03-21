@@ -1,0 +1,31 @@
+restart 
+
+vector din din[0:10] 
+radix bin din 
+
+vector error error[0:14] 
+radix bin error 
+
+vector dout dout[0:10] 
+radix bin dout 
+
+wfm clk @0 = 1 (50ns=0 50ns=1)*105
+
+wfm error @0 = 000000000000000 +
+@2500ns = 000001000000000 +
+@4000ns = 000000000000000 +
+@5500ns = 000001000000000 +
+@7000ns = 000000001000000
+ 
+wfm din @0 = 01110000010 +
+@2500ns = 10100100100 +
+@4000ns = 11000011000 +
+@5500ns = 00101000011 +
+@7000ns = 00001010110
+
+wfm reset @0 = 1 + 
+@520ns = 0
+
+wave sim.wfm  wrong wrongNow vdout reset
+
+run

@@ -1,0 +1,120 @@
+
+----- Date             : Thu Nov 27 12:34:49 1997
+----- Module Name      : DCOUNT
+----- Library Name     : X3000
+----- Output Directory : .
+----- Operating Voltage: 5.000000
+----- Operating Temp   : 25
+----- Process          : TYPICAL
+----- Logic Type       : LARGE
+----- area/speed Factor: 1.000000
+----- Package          : DEFAULT
+
+             *********************************************
+                             Output Drives
+             *********************************************
+
+
+   Output            Drive              Output             Drive
+----------------------------------------------------------------------------
+                    rise     fall                         rise     fall
+                   ----------------                      ----------------
+PE                 0.0000   0.0000    VDOUT              0.0000   0.0000 
+VDOUT1             0.0000   0.0000    
+
+
+             *********************************************
+                             Input Loadings
+             *********************************************
+
+
+       Input             Load        Input             Load
+-------------------------------------------------------------------
+      CLK                7.000      RESET              3.000  
+
+
+
+             *********************************************
+                             Timing Report
+             *********************************************
+
+
+   Output          Delay            Required       Required Load   External Cap
+-----------------------------------------------------------------------------
+                  rise     fall      rise     fall      (Buffering)  (Timing)
+                ----------------   --------------    ------------  ----------
+DIN__NFIRST       4.00     4.00     <none>   <none>         1.0       1.0
+DIN__VDOUT11      4.00     4.00     <none>   <none>         1.0       1.0
+DIN__COUT__[0]    1.00     1.00     <none>   <none>         1.0       1.0
+DIN__COUT__[1]    2.00     2.00     <none>   <none>         1.0       1.0
+DIN__COUT__[2]    2.00     2.00     <none>   <none>         1.0       1.0
+DIN__COUT__[3]    2.00     2.00     <none>   <none>         1.0       1.0
+PE                2.00     2.00     <none>   <none>         1.0       1.0
+VDOUT             1.00     1.00     <none>   <none>         1.0       1.0
+VDOUT1            1.00     1.00     <none>   <none>         1.0       1.0
+----------------------------------------------------------------------------
+Total Delta          0.00      0.00
+Max.  Delay          4.00      4.00
+Min.  Delay          1.00      1.00
+
+               ****************************************
+                       Critical Path Delays
+               ****************************************
+
+
+ Node             Arrival      Required     Slack        Type
+ -----------------------------------------------------------------------
+DIN__NFIRST        4.00            -           -          X3000:AND2:1
+SGEN_NODE_3        3.00            -           -          X3000:OR2:2
+VDOUTR             2.00            -           -          X3000:OR2:1
+NET_$4             1.00            -           -          X3000:AND4:4
+COUT_1_$Q   R/B/LC Output
+
+DIN__NFIRST        4.00            -           -          X3000:AND2:1
+SGEN_NODE_3        3.00            -           -          X3000:OR2:2
+VDOUTR             2.00            -           -          X3000:OR2:1
+NET_$4             1.00            -           -          X3000:AND4:4
+COUT_1_$Q   R/B/LC Output
+
+DIN__VDOUT11       4.00            -           -          X3000:AND2:1
+SGEN_NODE_8        3.00            -           -          X3000:OR2:1
+NET_$1             2.00            -           -          X3000:AND5:5
+NET_$5             1.00            -           -          X3000:INV:I
+COUT_4_$Q   R/B/LC Output
+
+DIN__VDOUT11       4.00            -           -          X3000:AND2:1
+SGEN_NODE_8        3.00            -           -          X3000:OR2:1
+NET_$1             2.00            -           -          X3000:AND5:5
+NET_$5             1.00            -           -          X3000:INV:I
+COUT_4_$Q   R/B/LC Output
+
+
+ R/B/LC => Register/BlackBox/LibraryComponent 
+
+
+
+             *********************************************
+                          Gate Usage Summary
+             *********************************************
+
+
+Cell         Count       Area/Cell    Cell         Count       Area/Cell
+----------------------------------------------------------------------------
+MX3000:FD       7           0.00      X3000:AND2      5           0.25
+X3000:AND4      1           0.75      X3000:AND5      1           0.75
+X3000:INV       5           0.00      X3000:NOR4      1           0.75
+X3000:OR2       4           0.25      X3000:XOR2      1           0.25
+----------------------------------------------------------------------------
+
+Total Cells :          25             Total Area  :        4.75
+
+
+             *********************************************
+                           Netlist Statistics
+             *********************************************
+
+Maximum level of gates =       4    Total number of nets   =      27
+Maximum pins per net   =       8    Average pins per net   =    3.00
+Maximum load per net   =    7.00    Average load per net   =    2.04
+
+

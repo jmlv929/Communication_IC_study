@@ -1,0 +1,29 @@
+ 1 function x=pilot_fft(y)
+ 2 n=0:63;
+ 3 fftbit=8;
+ 4 mubit=8;
+ 5 y=num2fixpt(y,sfix(mubit),2^(-mubit+1),'floor','on');
+ 6 z=exp(n.*7*pi/32*j);
+ 7 z=num2fixpt(z,sfix(mubit),2^(-mubit+1),'nearest','on');
+ 8 v1=y.*z;
+ 9 v1=num2fixpt(v1,sfix(fftbit),2^(-fftbit+1),'nearest','on');
+10 z2=exp(n.*7*pi/32*j*-1);
+11 z2=num2fixpt(z2,sfix(mubit),2^(-mubit+1),'nearest','on');
+12 v2=y.*z2;
+13 v2=num2fixpt(v2,sfix(fftbit),2^(-fftbit+1),'nearest','on');
+14 z3=exp(n.*21*pi/32*j);
+15 z3=num2fixpt(z3,sfix(mubit),2^(-mubit+1),'nearest','on');
+16 v3=y.*z3;
+17 v3=num2fixpt(v3,sfix(fftbit),2^(-fftbit+1),'nearest','on');
+18 z4=exp(n.*21*pi/32*j*-1);
+19 z4=num2fixpt(z4,sfix(mubit),2^(-mubit+1),'nearest','on');
+20 v4=y.*z4;
+21 v4=num2fixpt(v4,sfix(fftbit),2^(-fftbit+1),'nearest','on');
+22 t1=sum(v1);
+23 t2=sum(v2);
+24 t3=sum(v3);
+25 t4=sum(v4);
+26 x=[t3 t1 t2  -1*t4];
+27 x=num2fixpt(x,sfix(10),2^(-5),'nearest','on');
+
+
