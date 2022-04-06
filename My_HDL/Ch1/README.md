@@ -24,6 +24,8 @@ always语句块内部，任何一个语句块（begin开始 end结尾）都是�
 ## latch_N
 ![latch_N](./pic/latch_N.png)
 
+## [D触发器和多路延迟](D触发器与多路延迟.md)
+
 ## DFF
 ![DFF](./pic/DFF.png)
 
