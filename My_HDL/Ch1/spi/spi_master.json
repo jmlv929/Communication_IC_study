@@ -1,0 +1,22 @@
+{"signal":[
+    {"name" : "pclk",
+     "wave" : "P..........."
+    },
+  ["ctrl",{
+    "name":"heihei",
+    "wave":"x855.=.",
+    "data":[1,2,'t'],
+    "phase": 0,
+    "node":"s.....b"
+  },
+  {
+    "name":"test",
+    "wave":"zx01.....0...",
+    "period": 0.5,
+    "node":"s.....a"
+  }]
+  ],
+ "config":{hscale:2},
+ "edge":["a~b t1","s<->a 5ms "]
+ 
+}
